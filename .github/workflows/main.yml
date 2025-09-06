@@ -63,8 +63,8 @@ jobs:
           cp package.json package-lock.json deploy/
           cp .env.example deploy/.env
 
-      - name: Install production deps into deploy/
-        run: npm ci --omit=dev --prefix ./deploy
+      # No instalar node_modules aquí - se instalarán en el servidor
+      # En cPanel, ejecutar: npm install --production
 
       # Opcional: si usas Passenger/Node en cPanel y tu entrypoint es app.js en dist/
       - name: Add .htaccess for Passenger
@@ -89,7 +89,7 @@ jobs:
             **/.git*
             **/.github*
             **/.DS_Store
-            **/node_modules/.cache/**
+            **/node_modules/**
             **/.env
             **/src/**
             **/tsconfig.json
