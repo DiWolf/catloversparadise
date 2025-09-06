@@ -1,0 +1,74 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!-- Terms Section -->
+<section class="section py-5">
+    <div class="r-container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 fw-bold mb-4">Términos y Condiciones</h1>
+                <p class="lead">Última actualización: {{ "now" | date("DD/MM/YYYY") }}</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>1. Aceptación de los términos</h2>
+                        <p>Al acceder y usar este sitio web, aceptas estar sujeto a estos términos y condiciones de uso.</p>
+                        
+                        <h2>2. Uso del sitio web</h2>
+                        <p>Puedes usar nuestro sitio web para:</p>
+                        <ul>
+                            <li>Explorar gatos disponibles para adopción</li>
+                            <li>Solicitar la adopción de un gato</li>
+                            <li>Obtener información sobre nuestros servicios</li>
+                            <li>Contactarnos con preguntas</li>
+                        </ul>
+                        
+                        <h2>3. Proceso de adopción</h2>
+                        <p>El proceso de adopción incluye:</p>
+                        <ul>
+                            <li>Completar una solicitud de adopción</li>
+                            <li>Entrevista con nuestro equipo</li>
+                            <li>Verificación de referencias</li>
+                            <li>Visita al hogar (si es necesario)</li>
+                            <li>Firma del contrato de adopción</li>
+                        </ul>
+                        
+                        <h2>4. Responsabilidades del adoptante</h2>
+                        <p>Al adoptar un gato, te comprometes a:</p>
+                        <ul>
+                            <li>Proporcionar un hogar seguro y amoroso</li>
+                            <li>Mantener al gato con atención veterinaria regular</li>
+                            <li>No vender, regalar o abandonar al gato</li>
+                            <li>Contactarnos si no puedes mantener al gato</li>
+                        </ul>
+                        
+                        <h2>5. Limitación de responsabilidad</h2>
+                        <p>Cat Lovers Paradise no se hace responsable por:</p>
+                        <ul>
+                            <li>Comportamiento del gato después de la adopción</li>
+                            <li>Gastos veterinarios futuros</li>
+                            <li>Daños causados por el gato</li>
+                        </ul>
+                        
+                        <h2>6. Modificaciones</h2>
+                        <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación.</p>
+                        
+                        <h2>7. Contacto</h2>
+                        <p>Para preguntas sobre estos términos, contáctanos en:</p>
+                        <p>
+                            <strong>Email:</strong> legal@catloversparadise.com<br>
+                            <strong>Teléfono:</strong> +1 (555) 123-4567
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!-- About Section -->
+<section class="section py-5">
+    <div class="r-container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 fw-bold mb-4">Sobre Nosotros</h1>
+                <p class="lead">Conectando gatos amorosos con familias que los adorarán</p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <h2 class="h3 mb-4">Nuestra Misión</h2>
+                <p class="mb-4">
+                    En Cat Lovers Paradise creemos que cada gato merece un hogar lleno de amor y cuidado. 
+                    Nuestra misión es conectar gatos amorosos con familias que los adorarán y les brindarán 
+                    el cuidado que necesitan.
+                </p>
+                <p class="mb-4">
+                    Trabajamos con refugios locales y rescatistas para asegurar que cada gato reciba 
+                    la atención médica necesaria, vacunaciones y un ambiente seguro antes de encontrar 
+                    su hogar para siempre.
+                </p>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <img src="/public/portal/image/about-cats.jpg" alt="Gatos en adopción" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

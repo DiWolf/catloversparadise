@@ -1,0 +1,253 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}Página no encontrada - Cat Lovers Paradise{% endblock %}
+
+{% block content %}
+<!-- Error 404 Section -->
+<section class="section py-5">
+    <div class="r-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="error-content">
+                    <!-- Error Image -->
+                    <div class="error-image mb-4">
+                        <img src="/public/portal/image/404.jpeg" alt="Gato perdido" class="img-fluid" style="max-width: 300px;">
+                    </div>
+                    
+                    <!-- Error Code -->
+                    
+                    
+                    <!-- Error Message -->
+                    <div class="error-message mb-4">
+                        <h2 class="h3 mb-3">¡Ups! Página no encontrada</h2>
+                        <p class="lead text-muted mb-4">
+                            Parece que este gato se ha escapado. La página que buscas no existe o ha sido movida.
+                        </p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="error-actions">
+                        <a href="/" class="btn btn-primary btn-lg me-3 mb-3">
+                            <i class="fa-solid fa-home me-2"></i>
+                            Volver al Inicio
+                        </a>
+                        <a href="/cats" class="btn btn-outline-primary btn-lg mb-3">
+                            <i class="fa-solid fa-cat me-2"></i>
+                            Ver Gatos Disponibles
+                        </a>
+                    </div>
+                    
+                    <!-- Helpful Links -->
+                    <div class="helpful-links mt-5">
+                        <h5 class="mb-3">¿Qué puedes hacer?</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <i class="fa-solid fa-search fa-2x text-primary mb-3"></i>
+                                        <h6>Buscar Gatos</h6>
+                                        <p class="small text-muted">Explora nuestra colección de gatos disponibles</p>
+                                        <a href="/cats" class="btn btn-sm btn-outline-primary">Explorar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <i class="fa-solid fa-info-circle fa-2x text-info mb-3"></i>
+                                        <h6>Sobre Nosotros</h6>
+                                        <p class="small text-muted">Conoce más sobre nuestra misión</p>
+                                        <a href="/about" class="btn btn-sm btn-outline-info">Conocer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <i class="fa-solid fa-envelope fa-2x text-success mb-3"></i>
+                                        <h6>Contacto</h6>
+                                        <p class="small text-muted">¿Necesitas ayuda? Contáctanos</p>
+                                        <a href="/contact" class="btn btn-sm btn-outline-success">Contactar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fun Cat Facts Section -->
+<section class="section py-5 bg-light">
+    <div class="r-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h3 class="mb-4">Mientras tanto, ¿sabías que...?</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="fact-card p-3 bg-white rounded shadow-sm">
+                            <i class="fa-solid fa-heart fa-2x text-danger mb-2"></i>
+                            <h6>Los gatos ronronean</h6>
+                            <p class="small text-muted mb-0">Los gatos ronronean no solo cuando están contentos, sino también cuando están enfermos o asustados.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="fact-card p-3 bg-white rounded shadow-sm">
+                            <i class="fa-solid fa-eye fa-2x text-warning mb-2"></i>
+                            <h6>Visión nocturna</h6>
+                            <p class="small text-muted mb-0">Los gatos pueden ver en la oscuridad 6 veces mejor que los humanos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.error-content {
+    padding: 2rem 0;
+}
+
+.error-code h1 {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 0;
+    color: var(--accent-color-2);
+    font-family: var(--font-1);
+}
+
+.error-message h2 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.error-message p {
+    color: var(--text-color);
+}
+
+.error-image img {
+    filter: grayscale(20%);
+    opacity: 0.8;
+    border-radius: 15px;
+}
+
+.fact-card {
+    transition: transform 0.3s ease;
+    border: 2px solid var(--accent-color);
+    background-color: var(--light-color) !important;
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color-2);
+}
+
+.fact-card i {
+    color: var(--accent-color-2) !important;
+}
+
+.fact-card h6 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.fact-card p {
+    color: var(--text-color);
+}
+
+.helpful-links h5 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.helpful-links .card {
+    border: 2px solid var(--accent-color);
+    background-color: var(--light-color);
+    transition: all 0.3s ease;
+}
+
+.helpful-links .card:hover {
+    border-color: var(--accent-color-2);
+    transform: translateY(-3px);
+}
+
+.helpful-links .card h6 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.helpful-links .card p {
+    color: var(--text-color);
+}
+
+.helpful-links .card i {
+    color: var(--accent-color-2);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    font-family: var(--font-2);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    color: white;
+}
+
+.btn-outline-primary {
+    color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    font-family: var(--font-2);
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    color: white;
+}
+
+.btn-outline-info {
+    color: var(--accent-green-2);
+    border-color: var(--accent-green-2);
+}
+
+.btn-outline-info:hover {
+    background-color: var(--accent-green-2);
+    border-color: var(--accent-green-2);
+    color: white;
+}
+
+.btn-outline-success {
+    color: var(--accent-green-2);
+    border-color: var(--accent-green-2);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--accent-green-2);
+    border-color: var(--accent-green-2);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .error-code h1 {
+        font-size: 4rem;
+    }
+    
+    .error-actions .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}

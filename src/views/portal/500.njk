@@ -1,0 +1,313 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}Error del servidor - Cat Lovers Paradise{% endblock %}
+
+{% block content %}
+<!-- Error 500 Section -->
+<section class="section py-5">
+    <div class="r-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="error-content">
+                    <!-- Error Image -->
+                    <div class="error-image mb-4">
+                        <img src="/public/portal/image/error500.jpeg" alt="Gato confundido" class="img-fluid" style="max-width: 300px;">
+                    </div>
+                    
+                    <!-- Error Code -->
+
+                    
+                    <!-- Error Message -->
+                    <div class="error-message mb-4">
+                        <h2 class="h3 mb-3">¡Oops! Algo salió mal</h2>
+                        <p class="lead text-muted mb-4">
+                            Nuestros gatos están trabajando duro para arreglar este problema. 
+                            Por favor, intenta de nuevo en unos minutos.
+                        </p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="error-actions">
+                        <a href="/" class="btn btn-primary btn-lg me-3 mb-3">
+                            <i class="fa-solid fa-home me-2"></i>
+                            Volver al Inicio
+                        </a>
+                        <button onclick="location.reload()" class="btn btn-outline-primary btn-lg mb-3">
+                            <i class="fa-solid fa-refresh me-2"></i>
+                            Intentar de Nuevo
+                        </button>
+                    </div>
+                    
+                    <!-- Status Information -->
+                    <div class="status-info mt-5">
+                        <div class="alert alert-info" role="alert">
+                            <h5 class="alert-heading">
+                                <i class="fa-solid fa-info-circle me-2"></i>
+                                ¿Qué está pasando?
+                            </h5>
+                            <p class="mb-0">
+                                Estamos experimentando problemas técnicos temporales. 
+                                Nuestro equipo de desarrolladores felinos está trabajando para resolverlo.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Helpful Links -->
+                    <div class="helpful-links mt-5">
+                        <h5 class="mb-3">Mientras tanto, puedes:</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <i class="fa-solid fa-cat fa-2x text-primary mb-3"></i>
+                                        <h6>Ver Gatos</h6>
+                                        <p class="small text-muted">Explora nuestros gatos disponibles</p>
+                                        <a href="/cats" class="btn btn-sm btn-outline-primary">Ver Gatos</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <i class="fa-solid fa-phone fa-2x text-success mb-3"></i>
+                                        <h6>Contactar</h6>
+                                        <p class="small text-muted">Si el problema persiste, contáctanos</p>
+                                        <a href="/contact" class="btn btn-sm btn-outline-success">Contactar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <i class="fa-solid fa-clock fa-2x text-warning mb-3"></i>
+                                        <h6>Esperar</h6>
+                                        <p class="small text-muted">Vuelve en unos minutos</p>
+                                        <button onclick="setTimeout(() => location.reload(), 30000)" class="btn btn-sm btn-outline-warning">
+                                            Esperar 30s
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Details (only in development) -->
+                    {% if error and NODE_ENV === 'development' %}
+                    <div class="technical-details mt-5">
+                        <div class="card">
+                            <div class="card-header bg-danger text-white">
+                                <h6 class="mb-0">
+                                    <i class="fa-solid fa-bug me-2"></i>
+                                    Detalles Técnicos (Solo en desarrollo)
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <pre class="mb-0"><code>{{ error }}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fun Cat Facts Section -->
+<section class="section py-5 bg-light">
+    <div class="r-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h3 class="mb-4">Mientras esperamos, aquí tienes algunos datos curiosos sobre gatos:</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="fact-card p-3 bg-white rounded shadow-sm">
+                            <i class="fa-solid fa-brain fa-2x text-info mb-2"></i>
+                            <h6>Inteligencia felina</h6>
+                            <p class="small text-muted mb-0">Los gatos tienen una memoria a corto plazo de 16 horas, más que los perros.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="fact-card p-3 bg-white rounded shadow-sm">
+                            <i class="fa-solid fa-running fa-2x text-success mb-2"></i>
+                            <h6>Velocidad</h6>
+                            <p class="small text-muted mb-0">Los gatos pueden correr hasta 48 km/h en distancias cortas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.error-content {
+    padding: 2rem 0;
+}
+
+.error-code h1 {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 0;
+    color: var(--accent-color-2);
+    font-family: var(--font-1);
+}
+
+.error-message h2 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.error-message p {
+    color: var(--text-color);
+}
+
+.error-image img {
+    filter: grayscale(20%);
+    opacity: 0.8;
+    border-radius: 15px;
+}
+
+.fact-card {
+    transition: transform 0.3s ease;
+    border: 2px solid var(--accent-color);
+    background-color: var(--light-color) !important;
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color-2);
+}
+
+.fact-card i {
+    color: var(--accent-color-2) !important;
+}
+
+.fact-card h6 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.fact-card p {
+    color: var(--text-color);
+}
+
+.helpful-links h5 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.helpful-links .card {
+    border: 2px solid var(--accent-color);
+    background-color: var(--light-color);
+    transition: all 0.3s ease;
+}
+
+.helpful-links .card:hover {
+    border-color: var(--accent-color-2);
+    transform: translateY(-3px);
+}
+
+.helpful-links .card h6 {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.helpful-links .card p {
+    color: var(--text-color);
+}
+
+.helpful-links .card i {
+    color: var(--accent-color-2);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    font-family: var(--font-2);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    color: white;
+}
+
+.btn-outline-primary {
+    color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    font-family: var(--font-2);
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    color: white;
+}
+
+.btn-outline-success {
+    color: var(--accent-green-2);
+    border-color: var(--accent-green-2);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--accent-green-2);
+    border-color: var(--accent-green-2);
+    color: white;
+}
+
+.btn-outline-warning {
+    color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+}
+
+.btn-outline-warning:hover {
+    background-color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
+    color: white;
+}
+
+.alert-info {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color-2);
+    color: var(--secondary-color);
+}
+
+.alert-info .alert-heading {
+    color: var(--secondary-color);
+    font-family: var(--font-1);
+}
+
+.technical-details pre {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--accent-color);
+}
+
+.technical-details .card-header {
+    background-color: var(--accent-color-2) !important;
+    border-color: var(--accent-color-2);
+}
+
+@media (max-width: 768px) {
+    .error-code h1 {
+        font-size: 4rem;
+    }
+    
+    .error-actions .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/public/portal/css/style.css">
+        <title>
+            {% block title %}
+                {{ title or "Cat Lovers Paradise" }}
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="border-bottom bg-white sticky-top">
+            <div class="r-container">
+                <nav class="navbar navbar-expand-lg font-2">
+                    <div class="container-fluid">
+                        <div class="logo-container">
+                            <a class="navbar-brand" href="/">
+                                <img src="/public/portal/image/logo.png" alt="Cat Lovers Paradise" class="img-fluid">
+                            </a>
+                        </div>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-4">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about">Nosotros</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Razas de gatos
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="/cats?breed=sphynx">Sphynx</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/cats?breed=bambino">Bambino</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/cats">Ver todas las razas</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/blog">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact">Contacto</a>
+                                </li>
+                            </ul>
+                            <div>
+                                <a href="tel:+123456789" class="btn btn-accent px-4 py-3">
+                                    <i class="fa-solid fa-phone"></i>
+                                    +12 345 6789</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <div class="section pb-0 overflow-visible mt-5 position-relative" style="margin-bottom: -6.5rem; z-index: 2;">
+                <div class="r-container bg-accent-color rounded-3">
+                    <div class="d-flex flex-lg-row flex-column">
+                        <div class="col px-3"></div>
+                        <div class="col">
+                            <div class="h-100 position-relative">
+                                <div class="footer-img w-100 start-0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section pb-0 bg-light-color">
+                <div class="r-container py-lg-5 pt-5 border-bottom">
+                    <div class="row row-cols-lg-3 row-cols-1 w-100 pt-5">
+                        <div class="col mb-3">
+                            <div class="d-flex flex-column gap-4">
+                                <div class="container">
+                                    <img src="/public/portal/image/logo.png" alt="Cat Lovers Paradise" class="img-fluid" width="250">
+                                </div>
+                                <p class="text-gray">
+                                    En Cat Lovers Paradise nos dedicamos a conectar gatos amorosos con familias que los adorarán. Cada gato merece un hogar
+                                    lleno de amor y cuidado.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col pt-lg-5 mb-3">
+                            <div class="row row-cols-lg-2 row-cols-1 h-100">
+                                <div class="col mb-3">
+                                    <div class="d-flex flex-column gap-3">
+                                        <h5 class="fw-semibold border-bottom pb-2">Enlaces Rápidos</h5>
+                                        <ul class="list gap-2">
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/" class="link">Inicio</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/about" class="link">Sobre Nosotros</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/cats" class="link">Gatos Disponibles</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/contact" class="link">Contacto</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col mb-3">
+                                    <div class="d-flex flex-column gap-3">
+                                        <h5 class="fw-semibold border-bottom pb-2">Información</h5>
+                                        <ul class="list gap-2">
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/privacy" class="link">Política de Privacidad</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/terms" class="link">Términos y Condiciones</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/support" class="link">Soporte</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                                <a href="/faq" class="link">Preguntas Frecuentes</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col pt-lg-5 px-lg-5 mb-3">
+                            <div class="d-flex flex-column gap-3">
+                                <h5 class="fw-semibold border-bottom pb-2">Contáctanos</h5>
+                                <ul class="list gap-2">
+                                    <li>
+                                        <i class="fa fa-location-dot"></i>
+                                        Calle Principal 123, Ciudad Felina, CP 12345
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone"></i>
+                                        +1 (555) 123-4567
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope"></i>
+                                        info@catloversparadise.com
+                                    </li>
+                                </ul>
+                                <div class="social-container mb-lg-0 mb-3">
+                                    <a href="https://www.facebook.com" class="social-item">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.twitter.com" class="social-item">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com" class="social-item">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.youtube.com" class="social-item">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="r-container py-3">
+                    <div class="d-flex flex-lg-row flex-column gap-3 justify-content-between">
+                        <div class="d-flex flex-row gap-3 justify-content-center">
+                            <a href="/privacy" class="link text-gray">Política de Privacidad</a>
+                            |
+                            <a href="/terms" class="link text-gray">Términos y Servicios</a>
+                        </div>
+                        <span class="text-gray text-center">
+                            Copyright © {{ year }} Cat Lovers Paradise. Todos los derechos reservados.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Scripts -->
+        <script src="/public/portal/js/vendor/bootstrap.bundle.min.js"></script>
+        <script src="/public/portal/js/vendor/jquery.min.js"></script>
+        <script src="/public/portal/js/vendor/swiper-bundle.min.js"></script>
+        <script src="/public/portal/js/script.js"></script>
+        <script src="/public/portal/js/swiper-script.js"></script>
+        <script src="/public/portal/js/submit-form.js"></script>
+        <script src="/public/portal/js/vendor/isotope.pkgd.min.js"></script>
+        <script src="/public/portal/js/video_embedded.js"></script>
+        <script src="/public/portal/js/vendor/fslightbox.js"></script>
+    </body>
+</html>
