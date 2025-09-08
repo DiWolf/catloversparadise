@@ -16,4 +16,7 @@ router.get('/terms', portalController.getTerms);
 router.get('/support', portalController.getSupport);
 router.get('/faq', portalController.getFaq);
 
+// Ruta para cambiar idioma
+router.get('/change-language', portalController.changeLanguage);
+
 export default router;

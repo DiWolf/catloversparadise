@@ -1,6 +1,6 @@
 {% extends "template/portal.njk" %}
 
-{% block title %}Página no encontrada - Cat Lovers Paradise{% endblock %}
+{% block title %}{{ t('error.404.title') }} - Cat Lovers Paradise{% endblock %}
 
 {% block content %}
 <!-- Error 404 Section -->
@@ -19,9 +19,9 @@
                     
                     <!-- Error Message -->
                     <div class="error-message mb-4">
-                        <h2 class="h3 mb-3">¡Ups! Página no encontrada</h2>
+                        <h2 class="h3 mb-3">{{ t('error.404.message') }}</h2>
                         <p class="lead text-muted mb-4">
-                            Parece que este gato se ha escapado. La página que buscas no existe o ha sido movida.
+                            {{ t('error.404.description') }}
                         </p>
                     </div>
                     
@@ -29,11 +29,11 @@
                     <div class="error-actions">
                         <a href="/" class="btn btn-primary btn-lg me-3 mb-3">
                             <i class="fa-solid fa-home me-2"></i>
-                            Volver al Inicio
+                            {{ t('error.404.goHome') }}
                         </a>
                         <a href="/cats" class="btn btn-outline-primary btn-lg mb-3">
                             <i class="fa-solid fa-cat me-2"></i>
-                            Ver Gatos Disponibles
+                            {{ t('nav.catBreeds') }}
                         </a>
                     </div>
                     

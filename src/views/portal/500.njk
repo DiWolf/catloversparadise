@@ -1,6 +1,6 @@
 {% extends "template/portal.njk" %}
 
-{% block title %}Error del servidor - Cat Lovers Paradise{% endblock %}
+{% block title %}{{ t('error.500.title') }} - Cat Lovers Paradise{% endblock %}
 
 {% block content %}
 <!-- Error 500 Section -->
@@ -19,10 +19,9 @@
                     
                     <!-- Error Message -->
                     <div class="error-message mb-4">
-                        <h2 class="h3 mb-3">¡Oops! Algo salió mal</h2>
+                        <h2 class="h3 mb-3">{{ t('error.500.message') }}</h2>
                         <p class="lead text-muted mb-4">
-                            Nuestros gatos están trabajando duro para arreglar este problema. 
-                            Por favor, intenta de nuevo en unos minutos.
+                            {{ t('error.500.description') }}
                         </p>
                     </div>
                     
@@ -30,11 +29,11 @@
                     <div class="error-actions">
                         <a href="/" class="btn btn-primary btn-lg me-3 mb-3">
                             <i class="fa-solid fa-home me-2"></i>
-                            Volver al Inicio
+                            {{ t('error.500.goHome') }}
                         </a>
                         <button onclick="location.reload()" class="btn btn-outline-primary btn-lg mb-3">
                             <i class="fa-solid fa-refresh me-2"></i>
-                            Intentar de Nuevo
+                            {{ t('error.contactSupport') }}
                         </button>
                     </div>
                     

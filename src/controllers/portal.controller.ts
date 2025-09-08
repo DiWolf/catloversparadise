@@ -56,6 +56,28 @@ const portalController = {
         res.render('portal/faq', {
             title: 'Preguntas Frecuentes - Cat Lovers Paradise'
         });
+    },
+    
+    changeLanguage: (req: Request, res: Response) => {
+        const { lang } = req.query;
+        const validLanguages = ['eng', 'sp', 'zh'];
+        
+        if (lang && validLanguages.includes(lang as string)) {
+            // Establecer cookie de idioma por 30 días
+            res.cookie('lang', lang, {
+                maxAge: 1000 * 60 * 60 * 24 * 30, // 30 días
+                httpOnly: false, // Permitir acceso desde JavaScript
+                secure: false, // Para desarrollo local
+                sameSite: 'lax'
+            });
+            
+            // Redirigir a la página anterior o a home
+            const referer = req.get('Referer') || '/';
+            res.redirect(referer);
+        } else {
+            // Si el idioma no es válido, redirigir a home
+            res.redirect('/');
+        }
     }
 }
 

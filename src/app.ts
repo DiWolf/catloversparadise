@@ -19,18 +19,57 @@ import fs from "fs";
 import indexRouter from '@routes/portal/portal.router';
 //import { mergeLocales } from "@utils/merge-locales";
 //Rutas
-const localesPath = path.join(__dirname, "../locales");
-const app = express();
-// Servir archivos estáticos desde /public
+const localesPath = path.join(process.cwd(), "locales");
 
+const app = express();
+
+// Servir archivos estáticos desde /public
 app.use("/public", express.static(path.join(__dirname, "..", "public")));
 
 app.use(cookieParser()); // <-- antes que i18n.init
 
+// Configurar i18n
+console.log('Locales path:', localesPath);
+console.log('Locales exist:', require('fs').existsSync(localesPath));
+
+i18n.configure({
+  locales: ['eng', 'sp', 'zh'],
+  directory: localesPath,
+  defaultLocale: 'eng',
+  cookie: 'lang',
+  queryParameter: 'lang',
+  autoReload: true,
+  updateFiles: false,
+  api: {
+    '__': 't',
+    '__n': 'tn'
+  }
+});
+
+// Inicializar i18n
+app.use(i18n.init);
+
+// Middleware para hacer las traducciones disponibles en las vistas
+app.use((req, res, next) => {
+  // Función de traducción que usa el contexto de la request
+  res.locals.t = (key: string, options?: any) => {
+    try {
+      return (req as any).t(key, options);
+    } catch (error) {
+      console.log('Translation error for key:', key, error);
+      return key; // Devolver la clave si hay error
+    }
+  };
+  res.locals.currentLocale = () => {
+    return (req as any).getLocale() || 'eng';
+  };
+  next();
+});
 
 app.use("/public", express.static(path.join(__dirname, "..", "public")));
 // Configuración de vistas con Nunjucks
 
+// Middleware para manejar cambio de idioma
 app.use((req, res, next) => {
   if (req.query.lang && i18n.getLocales().includes(req.query.lang as string)) {
     res.cookie("lang", req.query.lang, {
@@ -59,6 +98,9 @@ env.addFilter("startsWith", function (value: any, prefix: string) {
   if (typeof value !== "string") return false;
   return value.startsWith(prefix);
 });
+
+// No necesitamos agregar globals de traducción aquí
+// Las traducciones se manejan a través de res.locals.t
 
 // Configurar flash
 app.use(flash()); // Habilitar connect-flash

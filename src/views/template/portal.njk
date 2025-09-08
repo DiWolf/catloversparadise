@@ -34,38 +34,62 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-4">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                                    <a class="nav-link active" aria-current="page" href="/">{{ t('nav.home') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/about">Nosotros</a>
+                                    <a class="nav-link" href="/about">{{ t('nav.about') }}</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Razas de gatos
+                                        {{ t('nav.catBreeds') }}
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="/cats?breed=sphynx">Sphynx</a>
+                                            <a class="dropdown-item" href="/cats?breed=sphynx">{{ t('nav.sphynx') }}</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/cats?breed=bambino">Bambino</a>
+                                            <a class="dropdown-item" href="/cats?breed=bambino">{{ t('nav.bambino') }}</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/cats">Ver todas las razas</a>
+                                            <a class="dropdown-item" href="/cats">{{ t('nav.viewAllBreeds') }}</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/blog">Blog</a>
+                                    <a class="nav-link" href="/blog">{{ t('nav.blog') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/contact">Contacto</a>
+                                    <a class="nav-link" href="/contact">{{ t('nav.contact') }}</a>
                                 </li>
                             </ul>
-                            <div>
+                            <div class="d-flex align-items-center gap-3">
+                                <!-- Language Selector -->
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-globe"></i>
+                                        <span id="currentLanguage">{{ t('common.language') }}</span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                        <li>
+                                            <a class="dropdown-item language-option" href="#" data-lang="eng">
+                                                <i class="fa-solid fa-flag-usa me-2"></i>{{ t('common.english') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item language-option" href="#" data-lang="sp">
+                                                <i class="fa-solid fa-flag me-2"></i>{{ t('common.spanish') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item language-option" href="#" data-lang="zh">
+                                                <i class="fa-solid fa-flag me-2"></i>{{ t('common.chinese') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <a href="tel:+123456789" class="btn btn-accent px-4 py-3">
                                     <i class="fa-solid fa-phone"></i>
-                                    +12 345 6789</a>
+                                    {{ t('nav.phone') }}</a>
                             </div>
                         </div>
                     </div>
@@ -97,8 +121,7 @@
                                     <img src="/public/portal/image/logo.png" alt="Cat Lovers Paradise" class="img-fluid" width="250">
                                 </div>
                                 <p class="text-gray">
-                                    En Cat Lovers Paradise nos dedicamos a conectar gatos amorosos con familias que los adorarán. Cada gato merece un hogar
-                                    lleno de amor y cuidado.
+                                    {{ t('footer.description') }}
                                 </p>
                             </div>
                         </div>
@@ -106,46 +129,46 @@
                             <div class="row row-cols-lg-2 row-cols-1 h-100">
                                 <div class="col mb-3">
                                     <div class="d-flex flex-column gap-3">
-                                        <h5 class="fw-semibold border-bottom pb-2">Enlaces Rápidos</h5>
+                                        <h5 class="fw-semibold border-bottom pb-2">{{ t('footer.quickLinks') }}</h5>
                                         <ul class="list gap-2">
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/" class="link">Inicio</a>
+                                                <a href="/" class="link">{{ t('nav.home') }}</a>
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/about" class="link">Sobre Nosotros</a>
+                                                <a href="/about" class="link">{{ t('nav.about') }}</a>
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/cats" class="link">Gatos Disponibles</a>
+                                                <a href="/cats" class="link">{{ t('nav.catBreeds') }}</a>
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/contact" class="link">Contacto</a>
+                                                <a href="/contact" class="link">{{ t('nav.contact') }}</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col mb-3">
                                     <div class="d-flex flex-column gap-3">
-                                        <h5 class="fw-semibold border-bottom pb-2">Información</h5>
+                                        <h5 class="fw-semibold border-bottom pb-2">{{ t('footer.information') }}</h5>
                                         <ul class="list gap-2">
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/privacy" class="link">Política de Privacidad</a>
+                                                <a href="/privacy" class="link">{{ t('footer.privacyPolicy') }}</a>
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/terms" class="link">Términos y Condiciones</a>
+                                                <a href="/terms" class="link">{{ t('footer.termsAndConditions') }}</a>
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/support" class="link">Soporte</a>
+                                                <a href="/support" class="link">{{ t('footer.support') }}</a>
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/faq" class="link">Preguntas Frecuentes</a>
+                                                <a href="/faq" class="link">{{ t('footer.faq') }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -154,19 +177,19 @@
                         </div>
                         <div class="col pt-lg-5 px-lg-5 mb-3">
                             <div class="d-flex flex-column gap-3">
-                                <h5 class="fw-semibold border-bottom pb-2">Contáctanos</h5>
+                                <h5 class="fw-semibold border-bottom pb-2">{{ t('footer.contactUs') }}</h5>
                                 <ul class="list gap-2">
                                     <li>
                                         <i class="fa fa-location-dot"></i>
-                                        Calle Principal 123, Ciudad Felina, CP 12345
+                                        {{ t('footer.address') }}
                                     </li>
                                     <li>
                                         <i class="fa fa-phone"></i>
-                                        +1 (555) 123-4567
+                                        {{ t('footer.phone') }}
                                     </li>
                                     <li>
                                         <i class="fa fa-envelope"></i>
-                                        info@catloversparadise.com
+                                        {{ t('footer.email') }}
                                     </li>
                                 </ul>
                                 <div class="social-container mb-lg-0 mb-3">
@@ -190,12 +213,12 @@
                 <div class="r-container py-3">
                     <div class="d-flex flex-lg-row flex-column gap-3 justify-content-between">
                         <div class="d-flex flex-row gap-3 justify-content-center">
-                            <a href="/privacy" class="link text-gray">Política de Privacidad</a>
+                            <a href="/privacy" class="link text-gray">{{ t('footer.privacyPolicy') }}</a>
                             |
-                            <a href="/terms" class="link text-gray">Términos y Servicios</a>
+                            <a href="/terms" class="link text-gray">{{ t('footer.termsAndServices') }}</a>
                         </div>
                         <span class="text-gray text-center">
-                            Copyright © {{ year }} Cat Lovers Paradise. Todos los derechos reservados.
+                            {{ t('footer.copyright', { year: year }) }}
                         </span>
                     </div>
                 </div>
@@ -211,5 +234,51 @@
         <script src="/public/portal/js/vendor/isotope.pkgd.min.js"></script>
         <script src="/public/portal/js/video_embedded.js"></script>
         <script src="/public/portal/js/vendor/fslightbox.js"></script>
+        <script>
+            // Language selector functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const languageOptions = document.querySelectorAll('.language-option');
+                const currentLanguageSpan = document.getElementById('currentLanguage');
+                
+                // Get current language from cookie or default to 'eng'
+                function getCurrentLanguage() {
+                    const cookies = document.cookie.split(';');
+                    for (let cookie of cookies) {
+                        const [name, value] = cookie.trim().split('=');
+                        if (name === 'lang') {
+                            return value;
+                        }
+                    }
+                    return 'eng';
+                }
+                
+                // Update current language display
+                function updateCurrentLanguageDisplay() {
+                    const currentLang = getCurrentLanguage();
+                    const languageNames = {
+                        'eng': 'English',
+                        'sp': 'Español',
+                        'zh': '中文'
+                    };
+                    if (currentLanguageSpan) {
+                        currentLanguageSpan.textContent = languageNames[currentLang] || 'English';
+                    }
+                }
+                
+                // Handle language selection
+                languageOptions.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const selectedLang = this.getAttribute('data-lang');
+                        
+                        // Redirect to change language route
+                        window.location.href = `/change-language?lang=${selectedLang}`;
+                    });
+                });
+                
+                // Initialize current language display
+                updateCurrentLanguageDisplay();
+            });
+        </script>
     </body>
 </html>

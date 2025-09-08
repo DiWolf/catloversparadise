@@ -5,16 +5,14 @@
             <div class="row row-cols-lg-2 row-cols-1">
                 <div class="col mb-3">
                     <div class="d-flex flex-column justify-content-center h-100 pe-lg-5 pe-0">
-                        <span class="font-1 accent-color-2 fs-3">Bienvenidos a Cat Lovers Paradise</span>
+                        <span class="font-1 accent-color-2 fs-3">{{ t('home.welcome') }}</span>
                         <div class="mb-4">
                             <h3 class="font-2 fw-semibold">
-                                Un paraíso donde el amor por los gatos se convierte en hogar
+                                {{ t('home.subtitle') }}
                             </h3>
                         </div>
                         <p class="text-gray">
-                            En Cat Lovers Paradise nos apasiona el cuidado y bienestar de gatos de distintas razas como Sphynx, Maine Coon, British,
-                            Bengalí y Azul Ruso. Criamos con amor y responsabilidad, ofreciendo gatitos con pedigree, salud garantizada y la
-                            compañía ideal para cada familia. Nuestro compromiso es que encuentres en nosotros un compañero felino único y especial.
+                            {{ t('home.description') }}
                         </p>
                     </div>
                 </div>
@@ -35,4 +33,190 @@
             </div>
         </div>
     </div>
+   
+    <!-- nuevo contenido -->
+       <div class="section">
+            <div class="r-container">
+                <div class="row row-cols-lg-2 row-cols-1">
+                    
+                    <div class="col">
+                        <div class="row row-cols-lg-2 row-cols-1 g-4">
+                            <div class="col">
+                                <div class="team-card h-100 d-flex flex-column bg-white rounded-4 shadow-sm overflow-hidden border-0">
+                                    <div class="team-image-container position-relative">
+                                        <img src="public/portal/image/angelina.png" alt="Angelina" class="team-image w-100">
+                                        <div class="team-overlay"></div>
+                                    </div>
+                                    <div class="team-content p-4 d-flex flex-column justify-content-center align-items-center text-center flex-grow-1">
+                                        <div class="team-info mb-3">
+                                            <h5 class="team-name fw-bold mb-2 text-dark">
+                                                Angelina Diaz
+                                            </h5>
+                                            
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="team-card h-100 d-flex flex-column bg-white rounded-4 shadow-sm overflow-hidden border-0">
+                                    <div class="team-image-container position-relative">
+                                        <img src="public/portal/image/lana.png" alt="Lana" class="team-image w-100">
+                                        <div class="team-overlay"></div>
+                                    </div>
+                                    <div class="team-content p-4 d-flex flex-column justify-content-center align-items-center text-center flex-grow-1">
+                                        <div class="team-info mb-3">
+                                            <h5 class="team-name fw-bold mb-2 text-dark">
+                                                Lana Murinova
+                                            </h5>
+                                          
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex flex-column pe-lg-5 gap-4">
+                            <span class="font-1 accent-color-2 fs-3">{{ t('home.aboutUs') }}</span>
+                            <h3 class="font-2 fw-semibold">{{ t('home.experience') }}</h3>
+                            <p class="text-gray">
+                                {{ t('home.aboutDescription') }}
+                            </p>
+                            <div>
+                                <a href="about.html" class="btn btn-accent px-5 py-3 fw-semibold">{{ t('home.readMore') }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- End nuevo contenido -->
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Team Cards Styles */
+.team-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.team-image-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-image {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover .team-image {
+    transform: scale(1.05);
+}
+
+.team-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 193, 7, 0.1), rgba(255, 87, 34, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-card:hover .team-overlay {
+    opacity: 1;
+}
+
+.team-content {
+    min-height: 120px;
+    background: #fff;
+    padding: 1.5rem !important;
+}
+
+.team-name {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    font-family: var(--font-1, 'Arial', sans-serif);
+}
+
+.team-role {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.team-social {
+    margin-top: auto;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #f8f9fa;
+    color: #6c757d;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.social-link:hover {
+    background: var(--accent-color, #ff6b35);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-image-container {
+        height: 160px;
+    }
+    
+    .team-content {
+        min-height: 100px;
+        padding: 1rem !important;
+    }
+    
+    .team-name {
+        font-size: 1.1rem;
+    }
+    
+    .team-role {
+        font-size: 0.85rem;
+    }
+}
+
+/* Grid spacing */
+.g-4 > * {
+    padding: 0.75rem;
+}
+
+/* Card height consistency */
+.team-card {
+    min-height: 320px;
+}
+
+@media (max-width: 768px) {
+    .team-card {
+        min-height: 280px;
+    }
+}
+</style>
 {% endblock %}

@@ -1,36 +1,373 @@
 {% extends "template/portal.njk" %}
-
-{% block title %}{{ title }}{% endblock %}
-
+{% block title %}
+    {{ title }}
+{% endblock %}
 {% block content %}
-<!-- About Section -->
-<section class="section py-5">
-    <div class="r-container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h1 class="display-4 fw-bold mb-4">Sobre Nosotros</h1>
-                <p class="lead">Conectando gatos amorosos con familias que los adorarán</p>
-            </div>
+    <!-- Hero Section -->
+    <div class="section position-relative" style="background-image: url(image/dummy-img-1920x900.jpg);">
+        <div class="image-overlay"></div>
+        <div class="r-container section position-relative" style="z-index: 2;">
+            <h3 class="text-white fw-semibold">{{ t('about.title') }}</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/">{{ t('nav.home') }}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ t('about.title') }}</li>
+                </ol>
+            </nav>
         </div>
-        
-        <div class="row align-items-center">
-            <div class="col-lg-6 mb-4">
-                <h2 class="h3 mb-4">Nuestra Misión</h2>
-                <p class="mb-4">
-                    En Cat Lovers Paradise creemos que cada gato merece un hogar lleno de amor y cuidado. 
-                    Nuestra misión es conectar gatos amorosos con familias que los adorarán y les brindarán 
-                    el cuidado que necesitan.
-                </p>
-                <p class="mb-4">
-                    Trabajamos con refugios locales y rescatistas para asegurar que cada gato reciba 
-                    la atención médica necesaria, vacunaciones y un ambiente seguro antes de encontrar 
-                    su hogar para siempre.
-                </p>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <img src="/public/portal/image/about-cats.jpg" alt="Gatos en adopción" class="img-fluid rounded shadow">
+    </div>
+
+    <!-- Mission Section -->
+    <div class="section">
+        <div class="r-container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <span class="font-1 accent-color-2 fs-3">{{ t('about.ourMission') }}</span>
+                    <h2 class="font-2 fw-semibold mb-4">{{ t('about.missionTitle') }}</h2>
+                    <p class="text-gray fs-5">{{ t('about.missionDesc') }}</p>
+                </div>
             </div>
         </div>
     </div>
-</section>
+
+    <!-- Values Section -->
+    <div class="section bg-light">
+        <div class="r-container">
+            <div class="text-center mb-5">
+                <span class="font-1 accent-color-2 fs-3">{{ t('about.ourValues') }}</span>
+                <h2 class="font-2 fw-semibold">{{ t('about.valuesTitle') }}</h2>
+            </div>
+            <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-4">
+                <div class="col">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-heart fa-3x accent-color-2"></i>
+                        </div>
+                        <h4 class="fw-semibold mb-3">{{ t('about.value1.title') }}</h4>
+                        <p class="text-gray">{{ t('about.value1.desc') }}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-paw fa-3x accent-color-2"></i>
+                        </div>
+                        <h4 class="fw-semibold mb-3">{{ t('about.value2.title') }}</h4>
+                        <p class="text-gray">{{ t('about.value2.desc') }}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-users fa-3x accent-color-2"></i>
+                        </div>
+                        <h4 class="fw-semibold mb-3">{{ t('about.value3.title') }}</h4>
+                        <p class="text-gray">{{ t('about.value3.desc') }}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-eye fa-3x accent-color-2"></i>
+                        </div>
+                        <h4 class="fw-semibold mb-3">{{ t('about.value4.title') }}</h4>
+                        <p class="text-gray">{{ t('about.value4.desc') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="section">
+        <div class="r-container">
+            <div class="row row-cols-lg-2 row-cols-1">
+                <div class="col">
+                    <div class="d-flex flex-column pe-lg-5 gap-4">
+                        <span class="font-1 accent-color-2 fs-3">{{ t('about.team') }}</span>
+                        <h3 class="font-2 fw-semibold">{{ t('about.meetTeam') }}</h3>
+                        <p class="text-gray">{{ t('about.description') }}</p>
+                        <div>
+                            <a href="#breeders" class="btn btn-accent px-5 py-3 fw-semibold">{{ t('about.seeAllTeam') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row row-cols-lg-2 row-cols-1">
+                        <div class="col">
+                            <div class="d-flex flex-column border-accent-2 rounded-4 overflow-hidden border">
+                                <img src="public/portal/image/lana.png" alt="{{ t('about.breeder1.name') }}" class="img-fluid">
+                                <div class="p-4 d-flex flex-column justify-content-center align-items-center gap-3 text-center">
+                                    <div>
+                                        <h5 class="fw-semibold m-0">{{ t('about.breeder1.name') }}</h5>
+                                        <span class="text-muted">{{ t('about.breeder1.specialty') }}</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-column border-accent-2 rounded-4 overflow-hidden border">
+                                <img src="public/portal/image/angelina.png" alt="{{ t('about.breeder2.name') }}" class="img-fluid">
+                                <div class="p-4 d-flex flex-column justify-content-center align-items-center gap-3 text-center">
+                                    <div>
+                                        <h5 class="fw-semibold m-0">{{ t('about.breeder2.name') }}</h5>
+                                        <span class="text-muted">{{ t('about.breeder2.specialty') }}</span>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breeders Section -->
+    <div class="section bg-light" id="breeders">
+        <div class="r-container">
+            <div class="text-center mb-5">
+                <span class="font-1 accent-color-2 fs-3">{{ t('about.breeders') }}</span>
+                <h2 class="font-2 fw-semibold">{{ t('about.breedersTitle') }}</h2>
+                <p class="text-gray fs-5">{{ t('about.breedersDesc') }}</p>
+            </div>
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
+                <!-- Breeder 1 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/lana_recorte_600x600.png" class="card-img-top" alt="{{ t('about.breeder1.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder1.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder1.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder1.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder1.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder1.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 2 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/angelina_600x600.png" class="card-img-top" alt="{{ t('about.breeder2.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder2.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder2.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder2.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder2.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder2.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 3 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/mercedes_recorte_600x600.png" class="card-img-top" alt="{{ t('about.breeder3.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder3.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder3.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder3.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder3.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder3.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 4 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/jesus_600x600.png" class="card-img-top" alt="{{ t('about.breeder4.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder4.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder4.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder4.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder4.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder4.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 5 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/yolanda.png" class="card-img-top" alt="{{ t('about.breeder5.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder5.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder5.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder5.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder5.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder5.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 6 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/elena.png" class="card-img-top" alt="{{ t('about.breeder6.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder6.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder6.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder6.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder6.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder6.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 7 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/dasha.png" class="card-img-top" alt="{{ t('about.breeder7.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder7.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder7.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder7.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder7.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder7.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breeder 8 -->
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="public/portal/image/nieves_600x600.png" class="card-img-top" alt="{{ t('about.breeder8.name') }}" style="height: 600px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-accent-2 text-white px-3 py-2 rounded-pill fw-semibold">{{ t('about.breeder8.experience') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ t('about.breeder8.name') }}</h5>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-paw text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.specialty') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder8.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa-solid fa-map-marker-alt text-accent-2 me-2"></i>
+                                    <span class="text-muted small">{{ t('about.location') }}:</span>
+                                </div>
+                                <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder8.location') }}</p>
+                            </div>
+                            <p class="card-text text-muted small lh-sm">{{ t('about.breeder8.shortDesc') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
