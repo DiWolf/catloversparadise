@@ -161,6 +161,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder1.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder1.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal1">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,6 +195,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder2.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder2.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal2">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,6 +229,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder3.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder3.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal3">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -248,6 +263,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder4.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder4.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal4">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -277,6 +297,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder5.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder5.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal5">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -306,6 +331,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder6.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder6.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal6">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -335,6 +365,11 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder7.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder7.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal7">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -364,6 +399,308 @@
                                 <p class="mb-0 fw-semibold text-dark">{{ t('about.breeder8.location') }}</p>
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder8.shortDesc') }}</p>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal8">
+                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales de Criadores -->
+    <!-- Modal Lana Mironova -->
+    <div class="modal fade" id="breederModal1" tabindex="-1" aria-labelledby="breederModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal1Label">{{ t('about.breeder1.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/lana_recorte_600x600.png" class="img-fluid rounded-4" alt="{{ t('about.breeder1.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder1.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder1.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder1.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder1.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Angelina Ruiz Díaz -->
+    <div class="modal fade" id="breederModal2" tabindex="-1" aria-labelledby="breederModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal2Label">{{ t('about.breeder2.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/angelina_600x600.png" class="img-fluid rounded-4" alt="{{ t('about.breeder2.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder2.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder2.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder2.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder2.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Mercedes -->
+    <div class="modal fade" id="breederModal3" tabindex="-1" aria-labelledby="breederModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal3Label">{{ t('about.breeder3.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/mercedes_recorte_600x600.png" class="img-fluid rounded-4" alt="{{ t('about.breeder3.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder3.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder3.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder3.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder3.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Jesús Márquez Linares -->
+    <div class="modal fade" id="breederModal4" tabindex="-1" aria-labelledby="breederModal4Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal4Label">{{ t('about.breeder4.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/jesus_600x600.png" class="img-fluid rounded-4" alt="{{ t('about.breeder4.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder4.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder4.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder4.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder4.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Yolanda Fernández -->
+    <div class="modal fade" id="breederModal5" tabindex="-1" aria-labelledby="breederModal5Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal5Label">{{ t('about.breeder5.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/yolanda.png" class="img-fluid rounded-4" alt="{{ t('about.breeder5.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder5.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder5.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder5.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder5.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Elena Smart -->
+    <div class="modal fade" id="breederModal6" tabindex="-1" aria-labelledby="breederModal6Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal6Label">{{ t('about.breeder6.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/elena.png" class="img-fluid rounded-4" alt="{{ t('about.breeder6.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder6.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder6.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder6.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder6.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dasha Dasha -->
+    <div class="modal fade" id="breederModal7" tabindex="-1" aria-labelledby="breederModal7Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal7Label">{{ t('about.breeder7.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/dasha.png" class="img-fluid rounded-4" alt="{{ t('about.breeder7.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder7.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder7.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder7.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder7.detailedBio') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nieves Rebollo -->
+    <div class="modal fade" id="breederModal8" tabindex="-1" aria-labelledby="breederModal8Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="breederModal8Label">{{ t('about.breeder8.name') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="public/portal/image/nieves_600x600.png" class="img-fluid rounded-4" alt="{{ t('about.breeder8.name') }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.specialty') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder8.specialty') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.experience') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder8.experience') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.location') }}</h6>
+                                <p class="mb-0">{{ t('about.breeder8.location') }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="fw-semibold text-accent-2">{{ t('about.biography') }}</h6>
+                                <p class="mb-0" style="white-space: pre-line;">{{ t('about.breeder8.detailedBio') }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
