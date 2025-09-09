@@ -1,0 +1,253 @@
+{% extends "template/portal.njk" %}
+{% block title %}
+    {{ t('breeds.title') }} - Cat Lovers Paradise
+{% endblock %}
+{% block content %}
+    <!-- Hero Section -->
+    <div class="section position-relative" style="background-image: url(/public/portal/image/dummy-img-1920x900.jpg);">
+        <div class="image-overlay"></div>
+        <div class="r-container section position-relative" style="z-index: 2;">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="text-white fw-bold display-4 mb-4">{{ t('breeds.title') }}</h1>
+                    <p class="text-white fs-5 mb-0">Descubre las razas de gatos más especiales y únicas que criamos con amor y dedicación</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breeds Grid -->
+    <div class="section">
+        <div class="r-container">
+            <div class="row g-4">
+                <!-- Bengal -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden breed-card">
+                        <div class="position-relative">
+                            <img src="/public/portal/image/breeds/bengal-main.png" class="card-img-top" alt="{{ t('breeds.bengal.name') }}" style="height: 250px; object-fit: cover;" onerror="this.src='/public/portal/image/dummy-img-600x400.jpg'">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.bengal.name') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ t('breeds.bengal.name') }}</h5>
+                            <p class="card-text text-muted mb-4">{{ t('breeds.bengal.description') }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fa-solid fa-heart text-danger me-1"></i>
+                                    {{ t('breeds.bengal.temperament') }}
+                                </small>
+                                <a href="/breed/bengal" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-eye me-1"></i>Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maine Coon -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden breed-card">
+                        <div class="position-relative">
+                            <img src="/public/portal/image/dummy-img-600x400.jpg" class="card-img-top" alt="{{ t('breeds.mainecoon.name') }}" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-info text-white px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.mainecoon.name') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ t('breeds.mainecoon.name') }}</h5>
+                            <p class="card-text text-muted mb-4">{{ t('breeds.mainecoon.description') }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fa-solid fa-heart text-danger me-1"></i>
+                                    {{ t('breeds.mainecoon.temperament') }}
+                                </small>
+                                <a href="/breed/mainecoon" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-eye me-1"></i>Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elf -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden breed-card">
+                        <div class="position-relative">
+                            <img src="/public/portal/image/dummy-img-600x400.jpg" class="card-img-top" alt="{{ t('breeds.elf.name') }}" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-purple text-white px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.elf.name') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ t('breeds.elf.name') }}</h5>
+                            <p class="card-text text-muted mb-4">{{ t('breeds.elf.description') }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fa-solid fa-heart text-danger me-1"></i>
+                                    {{ t('breeds.elf.temperament') }}
+                                </small>
+                                <a href="/breed/elf" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-eye me-1"></i>Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Persian -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden breed-card">
+                        <div class="position-relative">
+                            <img src="/public/portal/image/dummy-img-600x400.jpg" class="card-img-top" alt="{{ t('breeds.persian.name') }}" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-primary text-white px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.persian.name') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ t('breeds.persian.name') }}</h5>
+                            <p class="card-text text-muted mb-4">{{ t('breeds.persian.description') }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fa-solid fa-heart text-danger me-1"></i>
+                                    {{ t('breeds.persian.temperament') }}
+                                </small>
+                                <a href="/breed/persian" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-eye me-1"></i>Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sphynx -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden breed-card">
+                        <div class="position-relative">
+                            <img src="/public/portal/image/dummy-img-600x400.jpg" class="card-img-top" alt="{{ t('breeds.sphynx.name') }}" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-danger text-white px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.sphynx.name') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ t('breeds.sphynx.name') }}</h5>
+                            <p class="card-text text-muted mb-4">{{ t('breeds.sphynx.description') }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fa-solid fa-heart text-danger me-1"></i>
+                                    {{ t('breeds.sphynx.temperament') }}
+                                </small>
+                                <a href="/breed/sphynx" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-eye me-1"></i>Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exotic Shorthair -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden breed-card">
+                        <div class="position-relative">
+                            <img src="/public/portal/image/dummy-img-600x400.jpg" class="card-img-top" alt="{{ t('breeds.exotic.name') }}" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-success text-white px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.exotic.name') }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ t('breeds.exotic.name') }}</h5>
+                            <p class="card-text text-muted mb-4">{{ t('breeds.exotic.description') }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fa-solid fa-heart text-danger me-1"></i>
+                                    {{ t('breeds.exotic.temperament') }}
+                                </small>
+                                <a href="/breed/exotic" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-eye me-1"></i>Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="section bg-accent-2">
+        <div class="r-container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h3 class="text-white fw-bold mb-3">¿Interesado en alguna de nuestras razas?</h3>
+                    <p class="text-white mb-4">Contáctanos para conocer más sobre nuestros ejemplares disponibles y el proceso de adopción.</p>
+                    <a href="/contact" class="btn btn-light btn-lg px-5 py-3 fw-semibold">
+                        <i class="fa-solid fa-envelope me-2"></i>Contactar Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Estilos para las tarjetas de razas */
+.breed-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.breed-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.btn-outline-primary {
+    border-width: 2px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .breed-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .card-img-top {
+        height: 200px !important;
+    }
+}
+</style>
+{% endblock %}

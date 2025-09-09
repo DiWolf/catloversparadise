@@ -45,14 +45,41 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="/cats?breed=sphynx">{{ t('nav.sphynx') }}</a>
+                                            <a class="dropdown-item" href="/breed/bengal">
+                                                <i class="fa-solid fa-paw me-2 text-warning"></i>{{ t('breeds.bengal.name') }}
+                                            </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/cats?breed=bambino">{{ t('nav.bambino') }}</a>
+                                            <a class="dropdown-item" href="/breed/mainecoon">
+                                                <i class="fa-solid fa-paw me-2 text-info"></i>{{ t('breeds.mainecoon.name') }}
+                                            </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/cats">{{ t('nav.viewAllBreeds') }}</a>
+                                            <a class="dropdown-item" href="/breed/elf">
+                                                <i class="fa-solid fa-paw me-2 text-purple"></i>{{ t('breeds.elf.name') }}
+                                            </a>
                                         </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/breed/persian">
+                                                <i class="fa-solid fa-paw me-2 text-primary"></i>{{ t('breeds.persian.name') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/breed/sphynx">
+                                                <i class="fa-solid fa-paw me-2 text-danger"></i>{{ t('breeds.sphynx.name') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/breed/exotic">
+                                                <i class="fa-solid fa-paw me-2 text-success"></i>{{ t('breeds.exotic.name') }}
+                                            </a>
+                                        </li>
+                                        <!-- <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="/breeds">
+                                                <i class="fa-solid fa-list me-2"></i>{{ t('nav.viewAllBreeds') }}
+                                            </a>
+                                        </li> -->
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -139,10 +166,10 @@
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
                                                 <a href="/about" class="link">{{ t('nav.about') }}</a>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
-                                                <a href="/cats" class="link">{{ t('nav.catBreeds') }}</a>
-                                            </li>
+                                                <a href="/breeds" class="link">{{ t('nav.catBreeds') }}</a>
+                                            </li> -->
                                             <li>
                                                 <i class="fa-solid fa-chevron-right fa-xs"></i>
                                                 <a href="/contact" class="link">{{ t('nav.contact') }}</a>
@@ -234,6 +261,31 @@
         <script src="/public/portal/js/vendor/isotope.pkgd.min.js"></script>
         <script src="/public/portal/js/video_embedded.js"></script>
         <script src="/public/portal/js/vendor/fslightbox.js"></script>
+        <style>
+            /* Estilos para el menú de razas */
+            .dropdown-menu .dropdown-item {
+                transition: all 0.3s ease;
+                padding: 0.75rem 1rem;
+            }
+            
+            .dropdown-menu .dropdown-item:hover {
+                background-color: #f8f9fa;
+                transform: translateX(5px);
+            }
+            
+            .dropdown-menu .dropdown-item i {
+                width: 16px;
+                text-align: center;
+            }
+            
+            .text-purple {
+                color: #6f42c1 !important;
+            }
+            
+            .dropdown-divider {
+                margin: 0.5rem 0;
+            }
+        </style>
         <script>
             // Language selector functionality
             document.addEventListener('DOMContentLoaded', function() {
@@ -271,8 +323,12 @@
                         e.preventDefault();
                         const selectedLang = this.getAttribute('data-lang');
                         
-                        // Redirect to change language route
-                        window.location.href = `/change-language?lang=${selectedLang}`;
+                        // Get current URL and add/update lang parameter
+                        const currentUrl = new URL(window.location.href);
+                        currentUrl.searchParams.set('lang', selectedLang);
+                        
+                        // Redirect to current page with new language
+                        window.location.href = currentUrl.toString();
                     });
                 });
                 

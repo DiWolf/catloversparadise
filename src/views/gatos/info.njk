@@ -1,0 +1,394 @@
+{% extends "template/portal.njk" %}
+{% block title %}
+    {{ t('breeds.' + breed + '.name') }} - {{ t('breeds.title') }}
+{% endblock %}
+{% block content %}
+    <!-- Hero Section Elegante -->
+    <div class="section position-relative" id="hero-section" style="background-image: url(/public/portal/image/breeds/{{ breed }}-hero.jpg); min-height: 60vh;">
+            <div class="image-overlay"></div>
+            <div class="r-container section position-relative" style="z-index: 2;">
+            <div class="row align-items-center" style="min-height: 50vh;">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="breed-badge mb-4">
+                        <span class="badge bg-accent-color px-4 py-2 rounded-pill fs-6">
+                            <i class="fa-solid fa-paw me-2"></i>{{ t('breeds.title') }}
+                        </span>
+                    </div>
+                    <h1 class="text-white fw-bold display-4 mb-4 text-shadow">
+                        {{ t('breeds.' + breed + '.name') }}
+                    </h1>
+                    <p class="text-white fs-5 mb-5 text-shadow">
+                        {{ t('breeds.' + breed + '.description') }}
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#breed-info" class="btn btn-transparent btn-xl px-5 py-3 fw-bold me-3 shadow-lg" style="color: white !important; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;">
+                            <i class="fa-solid fa-info-circle me-2" style="color: white !important;"></i>{{ t('breeds.info.learnMore') }}
+                        </a>
+                        <a href="/contact" class="btn btn-outline-light btn-lg px-4 py-2 fw-medium">
+                            <i class="fa-solid fa-heart me-2"></i>{{ t('breeds.info.adopt') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb -->
+        <div class="r-container position-relative" style="z-index: 2;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/" class="text-white text-decoration-none">
+                            <i class="fa-solid fa-home me-1"></i>{{ t('breeds.breadcrumb.home') }}
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">
+                        <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.' + breed + '.name') }}
+                    </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+    <!-- Breed Information -->
+    <div id="breed-info" class="section pb-0 bg-light-color">
+            <div class="r-container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="position-relative p-4">
+                        <img src="/public/portal/image/breeds/{{ breed }}-main.png" 
+                             alt="{{ t('breeds.' + breed + '.name') }} - {{ t('breeds.info.physicalCharacteristics') }}" 
+                             class="img-fluid rounded-4 shadow-lg breed-image border border-light" 
+                             onerror="this.src='/public/portal/image/dummy-img-600x600.jpg'">
+                        <div class="position-absolute top-0 end-0 m-4">
+                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow">
+                                <i class="fa-solid fa-star me-1"></i>{{ t('breeds.info.premium') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                            <div class="ps-lg-5 ps-0">
+                        <span class="font-1 accent-color-2 fs-3">{{ t('breeds.title') }}</span>
+                        <h2 class="font-2 fw-semibold mb-4">{{ t('breeds.' + breed + '.name') }}</h2>
+                        <p class="text-gray mb-4 fs-5 lh-lg">
+                            {{ t('breeds.' + breed + '.description') }}
+                        </p>
+                        <!-- Stats simples -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-4">
+                                <div class="text-center stats-card bg-white">
+                                    <i class="fa-solid fa-heart text-danger fs-4 mb-2"></i>
+                                    <div class="fw-bold text-primary">95%</div>
+                                    <small class="text-muted">{{ t('breeds.info.affectionate') }}</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center stats-card bg-white">
+                                    <i class="fa-solid fa-dumbbell text-warning fs-4 mb-2"></i>
+                                    <div class="fw-bold text-primary">85%</div>
+                                    <small class="text-muted">{{ t('breeds.info.active') }}</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center stats-card bg-white">
+                                    <i class="fa-solid fa-brain text-info fs-4 mb-2"></i>
+                                    <div class="fw-bold text-primary">90%</div>
+                                    <small class="text-muted">{{ t('breeds.info.intelligent') }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breed Details -->
+    <div class="section py-4">
+        <div class="r-container">
+            <div class="text-center mb-4">
+                <h3 class="font-2 fw-bold mb-3">{{ t('breeds.info.detailedCharacteristics') }}</h3>
+                <p class="text-muted">{{ t('breeds.info.detailedCharacteristicsDesc') }}</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 feature-card">
+                        <div class="card-body p-4">
+                            <div class="text-center mb-3">
+                                <div class="feature-icon mx-auto mb-3">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">{{ t('breeds.info.physicalCharacteristics') }}</h5>
+                            </div>
+                            <p class="card-text text-muted lh-lg fs-6">{{ t('breeds.' + breed + '.characteristics') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 feature-card">
+                        <div class="card-body p-4">
+                            <div class="text-center mb-3">
+                                <div class="feature-icon mx-auto mb-3">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">{{ t('breeds.info.temperament') }}</h5>
+                            </div>
+                            <p class="card-text text-muted lh-lg fs-6">{{ t('breeds.' + breed + '.temperament') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 feature-card">
+                        <div class="card-body p-4">
+                            <div class="text-center mb-3">
+                                <div class="feature-icon mx-auto mb-3">
+                                    <i class="fa-solid fa-shield-heart"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">{{ t('breeds.info.specialCare') }}</h5>
+                            </div>
+                            <p class="card-text text-muted lh-lg fs-6">{{ t('breeds.' + breed + '.care') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="section bg-accent-2">
+        <div class="r-container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h3 class="text-white fw-bold mb-3">{{ t('breeds.info.interestedIn') }} {{ t('breeds.' + breed + '.name') }}?</h3>
+                    <p class="text-white mb-4">{{ t('breeds.info.contactUs') }}</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="/contact" class="btn btn-accent-2 btn-lg px-5 py-3 fw-semibold">
+                            <i class="fa-solid fa-envelope me-2"></i>{{ t('breeds.info.contactNow') }}
+                        </a>
+                        <a href="tel:+123456789" class="btn btn-outline-accent-2 btn-lg px-5 py-3 fw-semibold">
+                            <i class="fa-solid fa-phone me-2"></i>{{ t('breeds.info.call') }}
+                        </a>
+                    </div>
+                    <div class="mt-4 d-flex flex-wrap justify-content-center gap-4">
+                        <div class="d-flex align-items-center text-white">
+                            <i class="fa-solid fa-shield-check me-2"></i>
+                            <span>{{ t('breeds.info.healthGuarantee') }}</span>
+                        </div>
+                        <div class="d-flex align-items-center text-white">
+                            <i class="fa-solid fa-truck me-2"></i>
+                            <span>{{ t('breeds.info.safeDelivery') }}</span>
+                        </div>
+                        <div class="d-flex align-items-center text-white">
+                            <i class="fa-solid fa-headset me-2"></i>
+                            <span>{{ t('breeds.info.support24') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== ESTILOS ELEGANTES Y FUNCIONALES ===== */
+
+/* Hero Section - Overlay más sutil */
+.image-overlay {
+    background: rgba(0, 0, 0, 0.4) !important; /* Reducido de 0.6 a 0.4 */
+}
+
+/* Sombra de texto para mejor legibilidad */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Botones CTA mejorados */
+.btn-xl {
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+}
+
+/* Botones accent-2 mejorados para armonía */
+.btn-accent-2 {
+    background: linear-gradient(135deg, var(--accent-color-2), #d4a574);
+    border: none;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+    color: white;
+}
+
+.btn-accent-2:hover {
+    background: linear-gradient(135deg, #d4a574, #c1965f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+    color: white;
+}
+
+/* Botón sólido elegante para hero */
+.btn-transparent {
+    background: rgba(212, 165, 116, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+    font-weight: bold !important;
+}
+
+.btn-transparent:hover {
+    background: rgba(212, 165, 116, 1) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.6);
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+.btn-transparent * {
+    color: white !important;
+}
+
+.btn-transparent i {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Botón outline accent-2 para mejor visibilidad */
+.btn-outline-accent-2 {
+    border: 2px solid var(--accent-color-2) !important;
+    color: var(--accent-color-2) !important;
+    background: rgba(212, 165, 116, 0.1) !important;
+    backdrop-filter: blur(10px);
+}
+
+.btn-outline-accent-2:hover {
+    background: var(--accent-color-2) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+}
+
+/* Hero Section */
+.breed-image {
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.breed-image:hover {
+    transform: scale(1.02);
+}
+
+/* Sistema de tarjetas unificado */
+.feature-card, .stats-card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.feature-card:hover, .stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+}
+
+/* Stats Cards */
+.bg-white {
+    transition: all 0.3s ease;
+}
+
+.bg-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Hero más compacto en móvil */
+    #hero-section {
+        min-height: 50vh !important;
+    }
+    
+    .breed-image {
+        height: 300px;
+    }
+    
+    /* CTAs centrados y grandes en móvil */
+    .hero-actions {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* Stats en una columna en móvil */
+    .stats-card {
+        margin-bottom: 1rem;
+    }
+    
+    /* Texto más legible en móvil */
+    .text-shadow {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Badge animations */
+.badge {
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.05);
+}
+</style>
+
+<script>
+// Fallback a imagen dummy si la específica no existe
+document.addEventListener('DOMContentLoaded', function() {
+    const breed = '{{ breed }}';
+    const breedImageUrl = `/public/portal/image/breeds/${breed}-hero.jpg`;
+    const dummyImageUrl = '/public/portal/image/dummy-img-1920x900.jpg';
+    
+    // Crear imagen de prueba
+    const testImg = new Image();
+    
+    testImg.onload = function() {
+        console.log('✅ Imagen específica cargada:', breedImageUrl);
+    };
+    
+    testImg.onerror = function() {
+        console.log('❌ Imagen específica no encontrada, usando dummy');
+        document.getElementById('hero-section').style.backgroundImage = `url(${dummyImageUrl})`;
+    };
+    
+    // Intentar cargar la imagen específica
+    testImg.src = breedImageUrl;
+});
+</script>
+{% endblock %}

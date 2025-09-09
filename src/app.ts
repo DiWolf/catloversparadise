@@ -49,6 +49,17 @@ i18n.configure({
 // Inicializar i18n
 app.use(i18n.init);
 
+// Middleware para manejar cambio de idioma (DESPUÉS de i18n.init)
+app.use((req, res, next) => {
+  if (req.query.lang && i18n.getLocales().includes(req.query.lang as string)) {
+    res.cookie("lang", req.query.lang, {
+      maxAge: 1000 * 60 * 60 * 24 * 30, // 30 días
+    });
+    (req as any).setLocale(req.query.lang as string);
+  }
+  next();
+});
+
 // Middleware para hacer las traducciones disponibles en las vistas
 app.use((req, res, next) => {
   // Función de traducción que usa el contexto de la request
@@ -67,18 +78,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/public", express.static(path.join(__dirname, "..", "public")));
-// Configuración de vistas con Nunjucks
-
-// Middleware para manejar cambio de idioma
-app.use((req, res, next) => {
-  if (req.query.lang && i18n.getLocales().includes(req.query.lang as string)) {
-    res.cookie("lang", req.query.lang, {
-      maxAge: 1000 * 60 * 60 * 24 * 30, // 30 días
-    });
-    req.setLocale(req.query.lang as string);
-  }
-  next();
-});
 app.set("view engine", "njk");
 // const env = nunjucks.configure("src/views", {
 //   autoescape: true,
@@ -196,7 +195,8 @@ app.use((error: any, req: express.Request, res: express.Response, next: express.
     title: "Error del servidor",
     error: process.env.NODE_ENV === 'development' ? error : null,
     NODE_ENV: process.env.NODE_ENV,
-    year: new Date().getFullYear()
+    year: new Date().getFullYear(),
+    t: res.locals.t || ((key: string) => key) // Asegurar que t esté disponible
   });
 });
 

@@ -4,18 +4,27 @@
 {% endblock %}
 {% block content %}
     <!-- Hero Section -->
-    <div class="section position-relative" style="background-image: url(image/dummy-img-1920x900.jpg);">
+    <div class="section position-relative" style="background-image: url(/public/portal/image/breeds/exotic-hero.jpg); min-height: 50vh;">
         <div class="image-overlay"></div>
         <div class="r-container section position-relative" style="z-index: 2;">
-            <h3 class="text-white fw-semibold">{{ t('about.title') }}</h3>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="/">{{ t('nav.home') }}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ t('about.title') }}</li>
-                </ol>
-            </nav>
+            <div class="row align-items-center" style="min-height: 40vh;">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="text-white fw-bold display-4 mb-4 text-shadow">{{ t('about.title') }}</h1>
+                    <p class="text-white fs-5 mb-4 text-shadow">{{ t('about.subtitle') }}</p>
+                    <nav aria-label="breadcrumb" class="justify-content-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/" class="text-white text-decoration-none">
+                                    <i class="fa-solid fa-home me-1"></i>{{ t('nav.home') }}
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">
+                                <i class="fa-solid fa-users me-1"></i>{{ t('about.title') }}
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -26,7 +35,12 @@
                 <div class="col-lg-8 text-center">
                     <span class="font-1 accent-color-2 fs-3">{{ t('about.ourMission') }}</span>
                     <h2 class="font-2 fw-semibold mb-4">{{ t('about.missionTitle') }}</h2>
-                    <p class="text-gray fs-5">{{ t('about.missionDesc') }}</p>
+                    <p class="text-gray fs-5 lh-lg">{{ t('about.missionDesc') }}</p>
+                    <div class="mt-4">
+                        <a href="#breeders" class="btn btn-accent-2 btn-lg px-4 py-2 fw-semibold">
+                            <i class="fa-solid fa-users me-2"></i>Conocer Equipo
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,39 +55,39 @@
             </div>
             <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-4">
                 <div class="col">
-                    <div class="text-center p-4">
+                    <div class="text-center value-card">
                         <div class="mb-3">
                             <i class="fa-solid fa-heart fa-3x accent-color-2"></i>
                         </div>
                         <h4 class="fw-semibold mb-3">{{ t('about.value1.title') }}</h4>
-                        <p class="text-gray">{{ t('about.value1.desc') }}</p>
+                        <p class="text-gray lh-lg fs-6">{{ t('about.value1.desc') }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="text-center p-4">
+                    <div class="text-center value-card">
                         <div class="mb-3">
                             <i class="fa-solid fa-paw fa-3x accent-color-2"></i>
                         </div>
                         <h4 class="fw-semibold mb-3">{{ t('about.value2.title') }}</h4>
-                        <p class="text-gray">{{ t('about.value2.desc') }}</p>
+                        <p class="text-gray lh-lg fs-6">{{ t('about.value2.desc') }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="text-center p-4">
+                    <div class="text-center value-card">
                         <div class="mb-3">
                             <i class="fa-solid fa-users fa-3x accent-color-2"></i>
                         </div>
                         <h4 class="fw-semibold mb-3">{{ t('about.value3.title') }}</h4>
-                        <p class="text-gray">{{ t('about.value3.desc') }}</p>
+                        <p class="text-gray lh-lg fs-6">{{ t('about.value3.desc') }}</p>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="text-center p-4">
+                    <div class="text-center value-card">
                         <div class="mb-3">
                             <i class="fa-solid fa-eye fa-3x accent-color-2"></i>
                         </div>
                         <h4 class="fw-semibold mb-3">{{ t('about.value4.title') }}</h4>
-                        <p class="text-gray">{{ t('about.value4.desc') }}</p>
+                        <p class="text-gray lh-lg fs-6">{{ t('about.value4.desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -90,7 +104,9 @@
                         <h3 class="font-2 fw-semibold">{{ t('about.meetTeam') }}</h3>
                         <p class="text-gray">{{ t('about.description') }}</p>
                         <div>
-                            <a href="#breeders" class="btn btn-accent px-5 py-3 fw-semibold">{{ t('about.seeAllTeam') }}</a>
+                            <a href="#breeders" class="btn btn-accent-2 btn-lg px-4 py-2 fw-semibold">
+                                <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -162,8 +178,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder1.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal1">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal1">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -196,8 +212,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder2.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal2">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal2">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -230,8 +246,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder3.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal3">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal3">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -264,8 +280,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder4.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal4">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal4">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -298,8 +314,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder5.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal5">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal5">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -332,8 +348,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder6.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal6">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal6">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -366,8 +382,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder7.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal7">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal7">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -400,8 +416,8 @@
                             </div>
                             <p class="card-text text-muted small lh-sm">{{ t('about.breeder8.shortDesc') }}</p>
                             <div class="mt-3">
-                                <button class="btn btn-outline-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal8">
-                                    <i class="fa-solid fa-eye me-2"></i>{{ t('about.viewProfile') }}
+                                <button class="btn btn-accent-2 btn-sm" data-bs-toggle="modal" data-bs-target="#breederModal8">
+                                    <i class="fa-solid fa-eye me-2"></i>Ver Perfil Completo
                                 </button>
                             </div>
                         </div>
@@ -707,4 +723,72 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== MEJORAS PARA ABOUT PAGE ===== */
+
+/* Hero Section - Overlay más sutil */
+.image-overlay {
+    background: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Sombra de texto para mejor legibilidad */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Botones accent-2 mejorados para armonía */
+.btn-accent-2 {
+    background: linear-gradient(135deg, var(--accent-color-2), #d4a574);
+    border: none;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+    color: white;
+}
+
+.btn-accent-2:hover {
+    background: linear-gradient(135deg, #d4a574, #c1965f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+    color: white;
+}
+
+/* Sistema de tarjetas unificado */
+.value-card, .breeder-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.value-card:hover, .breeder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Hero más compacto en móvil */
+    .section {
+        min-height: 40vh !important;
+    }
+    
+    /* CTAs centrados en móvil */
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* Grid del equipo: 1 columna mobile */
+    .row-cols-lg-2 {
+        --bs-columns: 1;
+    }
+    
+    /* Texto más legible en móvil */
+    .text-shadow {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+}
+</style>
 {% endblock %}

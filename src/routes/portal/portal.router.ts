@@ -7,6 +7,8 @@ const router = Router();
 router.get('/', portalController.getHome);
 router.get('/about', portalController.getAbout);
 router.get('/cats', portalController.getCats);
+router.get('/breeds', portalController.getBreeds);
+router.get('/breed/:breed', portalController.getBreedInfo);
 router.get('/contact', portalController.getContact);
 router.get('/blog', portalController.getBlog);
 

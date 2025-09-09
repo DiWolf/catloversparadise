@@ -22,6 +22,28 @@ const portalController = {
         });
     },
     
+    getBreeds: (req: Request, res: Response) => {
+        res.render('portal/breeds', {
+            title: 'Nuestras Razas - Cat Lovers Paradise'
+        });
+    },
+    
+    getBreedInfo: (req: Request, res: Response) => {
+        const { breed } = req.params;
+        const validBreeds = ['bengal', 'mainecoon', 'elf', 'persian', 'sphynx', 'exotic'];
+        
+        if (!validBreeds.includes(breed)) {
+            return res.status(404).render('portal/404', {
+                title: 'Raza no encontrada - Cat Lovers Paradise'
+            });
+        }
+        
+        res.render('gatos/info', {
+            title: `${breed} - Cat Lovers Paradise`,
+            breed
+        });
+    },
+    
     getContact: (req: Request, res: Response) => {
         res.render('portal/contact', {
             title: 'Contacto - Cat Lovers Paradise'

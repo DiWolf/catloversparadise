@@ -42,26 +42,25 @@
                         <div class="alert alert-info" role="alert">
                             <h5 class="alert-heading">
                                 <i class="fa-solid fa-info-circle me-2"></i>
-                                ¿Qué está pasando?
+                                {{ t('error.500.whatsHappening') }}
                             </h5>
                             <p class="mb-0">
-                                Estamos experimentando problemas técnicos temporales. 
-                                Nuestro equipo de desarrolladores felinos está trabajando para resolverlo.
+                                {{ t('error.500.whatsHappeningDesc') }}
                             </p>
                         </div>
                     </div>
                     
                     <!-- Helpful Links -->
                     <div class="helpful-links mt-5">
-                        <h5 class="mb-3">Mientras tanto, puedes:</h5>
+                        <h5 class="mb-3">{{ t('error.500.meanwhile') }}</h5>
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body text-center">
                                         <i class="fa-solid fa-cat fa-2x text-primary mb-3"></i>
-                                        <h6>Ver Gatos</h6>
-                                        <p class="small text-muted">Explora nuestros gatos disponibles</p>
-                                        <a href="/cats" class="btn btn-sm btn-outline-primary">Ver Gatos</a>
+                                        <h6>{{ t('error.500.viewCats') }}</h6>
+                                        <p class="small text-muted">{{ t('error.500.viewCatsDesc') }}</p>
+                                        <a href="/cats" class="btn btn-sm btn-outline-primary">{{ t('error.500.viewCats') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -69,9 +68,9 @@
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body text-center">
                                         <i class="fa-solid fa-phone fa-2x text-success mb-3"></i>
-                                        <h6>Contactar</h6>
-                                        <p class="small text-muted">Si el problema persiste, contáctanos</p>
-                                        <a href="/contact" class="btn btn-sm btn-outline-success">Contactar</a>
+                                        <h6>{{ t('error.500.contact') }}</h6>
+                                        <p class="small text-muted">{{ t('error.500.contactDesc') }}</p>
+                                        <a href="/contact" class="btn btn-sm btn-outline-success">{{ t('error.500.contact') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -79,10 +78,10 @@
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body text-center">
                                         <i class="fa-solid fa-clock fa-2x text-warning mb-3"></i>
-                                        <h6>Esperar</h6>
-                                        <p class="small text-muted">Vuelve en unos minutos</p>
+                                        <h6>{{ t('error.500.wait') }}</h6>
+                                        <p class="small text-muted">{{ t('error.500.waitDesc') }}</p>
                                         <button onclick="setTimeout(() => location.reload(), 30000)" class="btn btn-sm btn-outline-warning">
-                                            Esperar 30s
+                                            {{ t('error.500.wait30s') }}
                                         </button>
                                     </div>
                                 </div>
@@ -97,7 +96,7 @@
                             <div class="card-header bg-danger text-white">
                                 <h6 class="mb-0">
                                     <i class="fa-solid fa-bug me-2"></i>
-                                    Detalles Técnicos (Solo en desarrollo)
+                                    {{ t('error.500.technicalDetails') }}
                                 </h6>
                             </div>
                             <div class="card-body">
@@ -117,20 +116,20 @@
     <div class="r-container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <h3 class="mb-4">Mientras esperamos, aquí tienes algunos datos curiosos sobre gatos:</h3>
+                <h3 class="mb-4">{{ t('error.500.funFacts') }}</h3>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="fact-card p-3 bg-white rounded shadow-sm">
                             <i class="fa-solid fa-brain fa-2x text-info mb-2"></i>
-                            <h6>Inteligencia felina</h6>
-                            <p class="small text-muted mb-0">Los gatos tienen una memoria a corto plazo de 16 horas, más que los perros.</p>
+                            <h6>{{ t('error.500.catIntelligence') }}</h6>
+                            <p class="small text-muted mb-0">{{ t('error.500.catIntelligenceDesc') }}</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="fact-card p-3 bg-white rounded shadow-sm">
                             <i class="fa-solid fa-running fa-2x text-success mb-2"></i>
-                            <h6>Velocidad</h6>
-                            <p class="small text-muted mb-0">Los gatos pueden correr hasta 48 km/h en distancias cortas.</p>
+                            <h6>{{ t('error.500.speed') }}</h6>
+                            <p class="small text-muted mb-0">{{ t('error.500.speedDesc') }}</p>
                         </div>
                     </div>
                 </div>
