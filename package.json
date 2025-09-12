@@ -14,7 +14,8 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "migrate": "ts-node src/scripts/migrate.ts",
     "init-db": "ts-node src/scripts/init-db.ts",
-    "migrate-prod": "ts-node src/scripts/migrate-production.ts"
+    "migrate-prod": "ts-node src/scripts/migrate-production.ts",
+    "migrate-prod-compiled": "node dist/scripts/migrate-production.js"
   },
   "keywords": [],
   "author": "",
