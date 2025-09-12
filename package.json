@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon",
-    "build": "tsc -p . && npm run copy:views && tsc-alias",
+    "build": "tsc -p . && npm run copy:views && npm run copy:migrations && tsc-alias",
     "copy:views": "shx mkdir -p dist/views && ncp src/views dist/views",
+    "copy:migrations": "shx mkdir -p dist/migrations && ncp src/migrations dist/migrations",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
