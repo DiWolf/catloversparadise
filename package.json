@@ -12,7 +12,9 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "migrate": "ts-node src/scripts/migrate.ts"
+    "migrate": "ts-node src/scripts/migrate.ts",
+    "init-db": "ts-node src/scripts/init-db.ts",
+    "migrate-prod": "ts-node src/scripts/migrate-production.ts"
   },
   "keywords": [],
   "author": "",

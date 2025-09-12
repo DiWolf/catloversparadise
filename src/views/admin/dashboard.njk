@@ -1,0 +1,199 @@
+{% extends "admin/layout.njk" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-0">Dashboard</h1>
+                    <p class="text-muted mb-0">Bienvenido de vuelta, {{ user.username }}!</p>
+                </div>
+                <div class="text-end">
+                    <small class="text-muted">
+                        Último acceso: 
+                        {% if user.last_login %}
+                            {{ user.last_login | date('DD/MM/YYYY') }}
+                        {% else %}
+                            Nunca
+                        {% endif %}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card stats-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body text-center">
+                    <i class="fas fa-cat fa-2x mb-3"></i>
+                    <h3>{{ stats.totalCats }}</h3>
+                    <p class="mb-0">Total de Gatos</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card stats-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="card-body text-center">
+                    <i class="fas fa-check-circle fa-2x mb-3"></i>
+                    <h3>{{ stats.activeCats }}</h3>
+                    <p class="mb-0">Gatos Activos</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card stats-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-2x mb-3"></i>
+                    <h3>{{ stats.totalUsers }}</h3>
+                    <p class="mb-0">Usuarios</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card stats-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-2x mb-3"></i>
+                    <h3>{{ stats.activeCats }}</h3>
+                    <p class="mb-0">Actividad</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <!-- Recent Cats -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cat me-2"></i>
+                        Gatos Recientes
+                    </h5>
+                    <a href="/admin/cats" class="btn btn-sm btn-outline-primary">
+                        Ver Todos
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if recentCats.length > 0 %}
+                        <div class="list-group list-group-flush">
+                            {% for cat in recentCats %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">{{ cat.name }}</h6>
+                                    <small class="text-muted">{{ cat.breed }} • {{ cat.created_at | date('DD/MM/YYYY') }}</small>
+                                </div>
+                                <div>
+                                    <span class="badge bg-{{ 'success' if cat.is_active else 'secondary' }}">
+                                        {{ 'Activo' if cat.is_active else 'Inactivo' }}
+                                    </span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-cat fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No hay gatos registrados</p>
+                            <a href="/admin/cats/create" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>
+                                Crear Primer Gato
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-users me-2"></i>
+                        Usuarios Recientes
+                    </h5>
+                    <a href="/admin/users" class="btn btn-sm btn-outline-primary">
+                        Ver Todos
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if recentUsers.length > 0 %}
+                        <div class="list-group list-group-flush">
+                            {% for user in recentUsers %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">{{ user.username }}</h6>
+                                    <small class="text-muted">{{ user.email }} • {{ user.created_at | date('DD/MM/YYYY') }}</small>
+                                </div>
+                                <div>
+                                    <span class="badge bg-{{ 'success' if user.is_active else 'secondary' }}">
+                                        {{ 'Activo' if user.is_active else 'Inactivo' }}
+                                    </span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No hay usuarios registrados</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>
+                        Acciones Rápidas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a href="/admin/cats/create" class="btn btn-primary w-100">
+                                <i class="fas fa-plus me-2"></i>
+                                Nuevo Gato
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a href="/admin/users" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-user-plus me-2"></i>
+                                Gestionar Usuarios
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a href="/admin/cats" class="btn btn-outline-success w-100">
+                                <i class="fas fa-list me-2"></i>
+                                Ver Todos los Gatos
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a href="/" target="_blank" class="btn btn-outline-info w-100">
+                                <i class="fas fa-external-link-alt me-2"></i>
+                                Ver Sitio Web
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

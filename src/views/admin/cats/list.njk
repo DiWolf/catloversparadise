@@ -1,0 +1,167 @@
+{% extends "admin/layout.njk" %}
+
+{% block title %}Gestión de Gatos{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-0">Gestión de Gatos</h1>
+                    <p class="text-muted mb-0">Administra la información de los gatos</p>
+                </div>
+                <div>
+                    <a href="/admin/cats/create" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        Nuevo Gato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cats Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list me-2"></i>
+                        Lista de Gatos
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if cats.length > 0 %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Raza</th>
+                                        <th>Slug</th>
+                                        <th>Estado</th>
+                                        <th>Creado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cat in cats %}
+                                    <tr>
+                                        <td>
+                                            {% if cat.main_image %}
+                                                <img src="/public/portal/image/breeds/{{ cat.main_image }}" 
+                                                     alt="{{ cat.name }}" 
+                                                     class="rounded" 
+                                                     style="width: 50px; height: 50px; object-fit: cover;"
+                                                     onerror="this.src='/public/portal/image/dummy-img-400x400.jpg'">
+                                            {% else %}
+                                                <div class="bg-light rounded d-flex align-items-center justify-content-center" 
+                                                     style="width: 50px; height: 50px;">
+                                                    <i class="fas fa-cat text-muted"></i>
+                                                </div>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <strong>{{ cat.name }}</strong>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info">{{ cat.breed }}</span>
+                                        </td>
+                                        <td>
+                                            <code>{{ cat.slug }}</code>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-{{ 'success' if cat.is_active else 'secondary' }}">
+                                                {{ 'Activo' if cat.is_active else 'Inactivo' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">{{ cat.created_at | date('DD/MM/YYYY') }}</small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="/gatos/{{ cat.slug }}" 
+                                                   class="btn btn-sm btn-outline-info" 
+                                                   target="_blank"
+                                                   title="Ver en el sitio">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="/admin/cats/{{ cat.id }}/edit" 
+                                                   class="btn btn-sm btn-outline-primary"
+                                                   title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button type="button" 
+                                                        class="btn btn-sm btn-outline-danger"
+                                                        onclick="confirmDelete({{ cat.id }}, '{{ cat.name }}')"
+                                                        title="Eliminar">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-cat fa-4x text-muted mb-4"></i>
+                            <h4 class="text-muted">No hay gatos registrados</h4>
+                            <p class="text-muted mb-4">Comienza agregando tu primer gato al sistema</p>
+                            <a href="/admin/cats/create" class="btn btn-primary btn-lg">
+                                <i class="fas fa-plus me-2"></i>
+                                Crear Primer Gato
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres eliminar el gato <strong id="catName"></strong>?</p>
+                <p class="text-muted">Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form id="deleteForm" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-2"></i>
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function confirmDelete(catId, catName) {
+    document.getElementById('catName').textContent = catName;
+    document.getElementById('deleteForm').action = `/admin/cats/${catId}/delete`;
+    
+    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
+}
+</script>
+{% endblock %}
+
+
+
+

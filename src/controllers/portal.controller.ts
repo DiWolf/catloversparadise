@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { CatService } from '../services/CatService';
 
 const portalController = {
     getHome: (req: Request, res: Response) => {
@@ -13,35 +14,105 @@ const portalController = {
         });
     },
     
-    getCats: (req: Request, res: Response) => {
-        const { breed, age } = req.query;
-        res.render('portal/cats', {
-            title: 'Gatos Disponibles - Cat Lovers Paradise',
-            breed,
-            age
-        });
-    },
-    
-    getBreeds: (req: Request, res: Response) => {
-        res.render('portal/breeds', {
-            title: 'Nuestras Razas - Cat Lovers Paradise'
-        });
-    },
-    
-    getBreedInfo: (req: Request, res: Response) => {
-        const { breed } = req.params;
-        const validBreeds = ['bengal', 'mainecoon', 'elf', 'persian', 'sphynx', 'exotic'];
-        
-        if (!validBreeds.includes(breed)) {
-            return res.status(404).render('portal/404', {
-                title: 'Raza no encontrada - Cat Lovers Paradise'
+    getCats: async (req: Request, res: Response) => {
+        try {
+            const cats = await CatService.findAll();
+            const currentLocale = (req as any).getLocale() || 'eng';
+            const { breed, age } = req.query;
+            
+            // Procesar traducciones para cada gato
+            const catsWithTranslations = cats.map(cat => {
+                const translation = cat.translations.find(t => t.language === currentLocale);
+                return {
+                    ...cat,
+                    name: translation?.name || cat.name,
+                    description: translation?.description || cat.description,
+                    characteristics: translation?.characteristics || cat.characteristics,
+                    temperament: translation?.temperament || cat.temperament,
+                    care: translation?.care || cat.care
+                };
+            });
+            
+            res.render('portal/cats', {
+                title: 'Gatos Disponibles - Cat Lovers Paradise',
+                cats: catsWithTranslations,
+                breed,
+                age
+            });
+        } catch (error) {
+            console.error('Error loading cats:', error);
+            res.status(500).render('portal/500', {
+                title: 'Error del servidor - Cat Lovers Paradise'
             });
         }
-        
-        res.render('gatos/info', {
-            title: `${breed} - Cat Lovers Paradise`,
-            breed
-        });
+    },
+    
+    getBreeds: async (req: Request, res: Response) => {
+        try {
+            const cats = await CatService.findAll();
+            const currentLocale = (req as any).getLocale() || 'eng';
+            
+            // Procesar traducciones para cada gato
+            const catsWithTranslations = cats.map(cat => {
+                const translation = cat.translations.find(t => t.language === currentLocale);
+                return {
+                    ...cat,
+                    name: translation?.name || cat.name,
+                    description: translation?.description || cat.description,
+                    characteristics: translation?.characteristics || cat.characteristics,
+                    temperament: translation?.temperament || cat.temperament,
+                    care: translation?.care || cat.care
+                };
+            });
+            
+            res.render('portal/breeds', {
+                title: 'Nuestras Razas - Cat Lovers Paradise',
+                cats: catsWithTranslations
+            });
+        } catch (error) {
+            console.error('Error loading breeds:', error);
+            res.status(500).render('portal/500', {
+                title: 'Error del servidor - Cat Lovers Paradise'
+            });
+        }
+    },
+    
+    getBreedInfo: async (req: Request, res: Response) => {
+        try {
+            const { breed } = req.params;
+            const currentLocale = (req as any).getLocale() || 'eng';
+            
+            // Buscar gato por slug
+            const cat = await CatService.findBySlug(breed, currentLocale);
+            
+            if (!cat) {
+                return res.status(404).render('portal/404', {
+                    title: 'Raza no encontrada - Cat Lovers Paradise'
+                });
+            }
+            
+            // Obtener la traducción del idioma actual
+            const translation = cat.translations.find(t => t.language === currentLocale);
+            const displayCat = {
+                ...cat,
+                name: translation?.name || cat.name,
+                description: translation?.description || cat.description,
+                characteristics: translation?.characteristics || cat.characteristics,
+                temperament: translation?.temperament || cat.temperament,
+                care: translation?.care || cat.care
+            };
+            
+            res.render('gatos/info', {
+                title: `${displayCat.name} - Cat Lovers Paradise`,
+                breed: cat.slug,
+                cat: displayCat
+            });
+        } catch (error) {
+            console.error('Error loading breed info:', error);
+            res.status(500).render('portal/500', {
+                title: 'Error del servidor - Cat Lovers Paradise'
+            });
+        }
     },
     
     getContact: (req: Request, res: Response) => {

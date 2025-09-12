@@ -1,0 +1,242 @@
+{% extends "admin/layout.njk" %}
+
+{% block title %}Crear Nuevo Gato{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-0">Crear Nuevo Gato</h1>
+                    <p class="text-muted mb-0">Agrega un nuevo gato al sistema</p>
+                </div>
+                <div>
+                    <a href="/admin/cats" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Volver a la Lista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-plus me-2"></i>
+                        Información del Gato
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/admin/cats/create">
+                        <!-- Basic Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Información Básica
+                                </h6>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Nombre *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="breed" class="form-label">Raza *</label>
+                                <input type="text" class="form-control" id="breed" name="breed" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="slug" class="form-label">Slug *</label>
+                                <input type="text" class="form-control" id="slug" name="slug" required>
+                                <div class="form-text">URL amigable (ej: persian, bengal, mainecoon)</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="hero_image" class="form-label">Imagen Hero</label>
+                                <input type="text" class="form-control" id="hero_image" name="hero_image" 
+                                       placeholder="persian-hero.jpg">
+                                <div class="form-text">Nombre del archivo de imagen para el hero</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="main_image" class="form-label">Imagen Principal</label>
+                                <input type="text" class="form-control" id="main_image" name="main_image" 
+                                       placeholder="persian-main.png">
+                                <div class="form-text">Nombre del archivo de imagen principal</div>
+                            </div>
+                        </div>
+
+                        <!-- Descriptions -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">
+                                    <i class="fas fa-align-left me-2"></i>
+                                    Descripciones
+                                </h6>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="description" class="form-label">Descripción *</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="characteristics" class="form-label">Características Físicas *</label>
+                                <textarea class="form-control" id="characteristics" name="characteristics" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="temperament" class="form-label">Temperamento *</label>
+                                <textarea class="form-control" id="temperament" name="temperament" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="care" class="form-label">Cuidados Especiales *</label>
+                                <textarea class="form-control" id="care" name="care" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Spanish Translations -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">
+                                    <i class="fas fa-language me-2"></i>
+                                    Traducciones en Español
+                                </h6>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="name_sp" class="form-label">Nombre en Español</label>
+                                <input type="text" class="form-control" id="name_sp" name="name_sp">
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="description_sp" class="form-label">Descripción en Español</label>
+                                <textarea class="form-control" id="description_sp" name="description_sp" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="characteristics_sp" class="form-label">Características en Español</label>
+                                <textarea class="form-control" id="characteristics_sp" name="characteristics_sp" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="temperament_sp" class="form-label">Temperamento en Español</label>
+                                <textarea class="form-control" id="temperament_sp" name="temperament_sp" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="care_sp" class="form-label">Cuidados en Español</label>
+                                <textarea class="form-control" id="care_sp" name="care_sp" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- English Translations -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">
+                                    <i class="fas fa-language me-2"></i>
+                                    Traducciones en Inglés
+                                </h6>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="name_eng" class="form-label">Nombre en Inglés</label>
+                                <input type="text" class="form-control" id="name_eng" name="name_eng">
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="description_eng" class="form-label">Descripción en Inglés</label>
+                                <textarea class="form-control" id="description_eng" name="description_eng" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="characteristics_eng" class="form-label">Características en Inglés</label>
+                                <textarea class="form-control" id="characteristics_eng" name="characteristics_eng" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="temperament_eng" class="form-label">Temperamento en Inglés</label>
+                                <textarea class="form-control" id="temperament_eng" name="temperament_eng" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="care_eng" class="form-label">Cuidados en Inglés</label>
+                                <textarea class="form-control" id="care_eng" name="care_eng" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row">
+                            <div class="col-12">
+                                <hr>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a href="/admin/cats" class="btn btn-outline-secondary">
+                                        <i class="fas fa-times me-2"></i>
+                                        Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>
+                                        Crear Gato
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-generate slug from name
+document.getElementById('name').addEventListener('input', function() {
+    const name = this.value;
+    const slug = name.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-') // Replace multiple hyphens with single
+        .trim();
+    
+    document.getElementById('slug').value = slug;
+});
+
+// Copy basic info to translations if empty
+function copyToTranslations() {
+    const fields = ['name', 'description', 'characteristics', 'temperament', 'care'];
+    
+    fields.forEach(field => {
+        const basicValue = document.getElementById(field).value;
+        
+        if (basicValue && !document.getElementById(field + '_sp').value) {
+            document.getElementById(field + '_sp').value = basicValue;
+        }
+        
+        if (basicValue && !document.getElementById(field + '_eng').value) {
+            document.getElementById(field + '_eng').value = basicValue;
+        }
+    });
+}
+
+// Add event listeners to copy basic info to translations
+document.getElementById('description').addEventListener('blur', copyToTranslations);
+document.getElementById('characteristics').addEventListener('blur', copyToTranslations);
+document.getElementById('temperament').addEventListener('blur', copyToTranslations);
+document.getElementById('care').addEventListener('blur', copyToTranslations);
+</script>
+{% endblock %}
+
+
+
+

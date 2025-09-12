@@ -1,13 +1,10 @@
 import "express";
+import { UserWithRole } from "../../types/User";
 
 declare global {
   namespace Express {
-    interface User {
-        id: number,
-        name: string,
-        email: string,
-        role: string,
-      // add other custom properties if needed
+    interface User extends UserWithRole {
+      // Extend UserWithRole for session
     }
   }
 }

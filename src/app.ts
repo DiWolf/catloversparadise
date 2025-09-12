@@ -17,6 +17,8 @@ import fs from "fs";
 
 // portal 
 import indexRouter from '@routes/portal/portal.router';
+// admin
+import adminRouter from '@routes/admin/admin.router';
 //import { mergeLocales } from "@utils/merge-locales";
 //Rutas
 const localesPath = path.join(process.cwd(), "locales");
@@ -98,6 +100,55 @@ env.addFilter("startsWith", function (value: any, prefix: string) {
   return value.startsWith(prefix);
 });
 
+// Filtro de fecha
+env.addFilter("date", function (value: any, format: string) {
+  console.log('🔍 Date filter called with:', value, format);
+  // Si el valor es null, undefined, o vacío, devolver cadena vacía
+  if (value === null || value === undefined || value === '') {
+    return '';
+  }
+  
+  let date: Date;
+  
+  // Si es string "now", usar fecha actual
+  if (value === "now") {
+    date = new Date();
+  } else if (typeof value === 'string') {
+    date = new Date(value);
+  } else if (value instanceof Date) {
+    date = value;
+  } else {
+    return format; // Si no es una fecha válida, devolver el formato
+  }
+  
+  if (isNaN(date.getTime())) {
+    return format; // Si la fecha es inválida, devolver el formato
+  }
+  
+  // Formatear la fecha según el formato solicitado
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const seconds = date.getSeconds().toString().padStart(2, '0');
+  
+  // Reemplazar solo las partes que existen en el formato
+  let result = format;
+  console.log('🔧 Before replacements:', result);
+  console.log('🔧 Date parts:', { day, month, year, hours, minutes, seconds });
+  
+  if (format.includes('DD')) result = result.replace(/DD/g, day);
+  if (format.includes('MM')) result = result.replace(/MM/g, month);
+  if (format.includes('YYYY')) result = result.replace(/YYYY/g, year.toString());
+  if (format.includes('HH')) result = result.replace(/HH/g, hours);
+  if (format.includes('mm')) result = result.replace(/mm/g, minutes);
+  if (format.includes('ss')) result = result.replace(/ss/g, seconds);
+  
+  console.log('🔧 After replacements:', result);
+  return result;
+});
+
 // No necesitamos agregar globals de traducción aquí
 // Las traducciones se manejan a través de res.locals.t
 
@@ -165,6 +216,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
+app.use("/admin", adminRouter);
 
 //app.use("/artemis/blog/categories",adminCategoriesRouter)
 

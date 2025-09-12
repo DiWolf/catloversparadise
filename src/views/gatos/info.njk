@@ -1,10 +1,10 @@
 {% extends "template/portal.njk" %}
 {% block title %}
-    {{ t('breeds.' + breed + '.name') }} - {{ t('breeds.title') }}
+    {{ cat.name }} - {{ t('breeds.title') }}
 {% endblock %}
 {% block content %}
     <!-- Hero Section Elegante -->
-    <div class="section position-relative" id="hero-section" style="background-image: url(/public/portal/image/breeds/{{ breed }}-hero.jpg); min-height: 60vh;">
+    <div class="section position-relative" id="hero-section" style="background-image: url(/public/portal/image/breeds/{{ cat.hero_image or breed + '-hero.jpg' }}); min-height: 60vh;">
             <div class="image-overlay"></div>
             <div class="r-container section position-relative" style="z-index: 2;">
             <div class="row align-items-center" style="min-height: 50vh;">
@@ -15,10 +15,10 @@
                         </span>
                     </div>
                     <h1 class="text-white fw-bold display-4 mb-4 text-shadow">
-                        {{ t('breeds.' + breed + '.name') }}
+                        {{ cat.name }}
                     </h1>
                     <p class="text-white fs-5 mb-5 text-shadow">
-                        {{ t('breeds.' + breed + '.description') }}
+                        {{ cat.description }}
                     </p>
                     <div class="hero-actions">
                         <a href="#breed-info" class="btn btn-transparent btn-xl px-5 py-3 fw-bold me-3 shadow-lg" style="color: white !important; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;">
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active text-white" aria-current="page">
-                        <i class="fa-solid fa-paw me-1"></i>{{ t('breeds.' + breed + '.name') }}
+                        <i class="fa-solid fa-paw me-1"></i>{{ cat.name }}
                     </li>
                     </ol>
                 </nav>
@@ -54,8 +54,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                         <div class="position-relative p-4">
-                        <img src="/public/portal/image/breeds/{{ breed }}-main.png" 
-                             alt="{{ t('breeds.' + breed + '.name') }} - {{ t('breeds.info.physicalCharacteristics') }}" 
+                        <img src="/public/portal/image/breeds/{{ cat.main_image or breed + '-main.png' }}" 
+                             alt="{{ cat.name }} - {{ t('breeds.info.physicalCharacteristics') }}" 
                              class="img-fluid rounded-4 shadow-lg breed-image border border-light" 
                              onerror="this.src='/public/portal/image/dummy-img-600x600.jpg'">
                         <div class="position-absolute top-0 end-0 m-4">
@@ -68,9 +68,9 @@
                 <div class="col-lg-6">
                             <div class="ps-lg-5 ps-0">
                         <span class="font-1 accent-color-2 fs-3">{{ t('breeds.title') }}</span>
-                        <h2 class="font-2 fw-semibold mb-4">{{ t('breeds.' + breed + '.name') }}</h2>
+                        <h2 class="font-2 fw-semibold mb-4">{{ cat.name }}</h2>
                         <p class="text-gray mb-4 fs-5 lh-lg">
-                            {{ t('breeds.' + breed + '.description') }}
+                            {{ cat.description }}
                         </p>
                         <!-- Stats simples -->
                         <div class="row g-3 mb-4">
@@ -119,7 +119,7 @@
                                 </div>
                                 <h5 class="card-title fw-bold">{{ t('breeds.info.physicalCharacteristics') }}</h5>
                             </div>
-                            <p class="card-text text-muted lh-lg fs-6">{{ t('breeds.' + breed + '.characteristics') }}</p>
+                            <p class="card-text text-muted lh-lg fs-6">{{ cat.characteristics }}</p>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                                 </div>
                                 <h5 class="card-title fw-bold">{{ t('breeds.info.temperament') }}</h5>
                             </div>
-                            <p class="card-text text-muted lh-lg fs-6">{{ t('breeds.' + breed + '.temperament') }}</p>
+                            <p class="card-text text-muted lh-lg fs-6">{{ cat.temperament }}</p>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                 </div>
                                 <h5 class="card-title fw-bold">{{ t('breeds.info.specialCare') }}</h5>
                             </div>
-                            <p class="card-text text-muted lh-lg fs-6">{{ t('breeds.' + breed + '.care') }}</p>
+                            <p class="card-text text-muted lh-lg fs-6">{{ cat.care }}</p>
                         </div>
                     </div>
                 </div>
@@ -158,13 +158,13 @@
         <div class="r-container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h3 class="text-white fw-bold mb-3">{{ t('breeds.info.interestedIn') }} {{ t('breeds.' + breed + '.name') }}?</h3>
+                    <h3 class="text-white fw-bold mb-3">{{ t('breeds.info.interestedIn') }} {{ cat.name }}?</h3>
                     <p class="text-white mb-4">{{ t('breeds.info.contactUs') }}</p>
                     <div class="d-flex flex-wrap justify-content-center gap-3">
                         <a href="/contact" class="btn btn-accent-2 btn-lg px-5 py-3 fw-semibold">
                             <i class="fa-solid fa-envelope me-2"></i>{{ t('breeds.info.contactNow') }}
                         </a>
-                        <a href="tel:+123456789" class="btn btn-outline-accent-2 btn-lg px-5 py-3 fw-semibold">
+                        <a href="tel:+525545531362" class="btn btn-outline-accent-2 btn-lg px-5 py-3 fw-semibold">
                             <i class="fa-solid fa-phone me-2"></i>{{ t('breeds.info.call') }}
                         </a>
                     </div>
