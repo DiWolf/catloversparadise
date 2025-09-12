@@ -32,11 +32,13 @@ async function runProductionMigration() {
         await connection.query(`USE \`${process.env.DB_NAME}\``);
         console.log(`✅ Usando base de datos '${process.env.DB_NAME}'`);
         
-        // Leer archivos de migración
-        const migration1Path = path.join(process.cwd(), 'src', 'migrations', '001_create_tables.sql');
-        const migration2Path = path.join(process.cwd(), 'src', 'migrations', '002_cats_data.sql');
+        // Leer archivos de migración desde la carpeta de migraciones compilada
+        const migration1Path = path.join(__dirname, '..', 'migrations', '001_create_tables.sql');
+        const migration2Path = path.join(__dirname, '..', 'migrations', '002_cats_data.sql');
         
         console.log('📁 Leyendo archivos de migración...');
+        console.log('📁 Ruta migración 1:', migration1Path);
+        console.log('📁 Ruta migración 2:', migration2Path);
         
         const migration1SQL = fs.readFileSync(migration1Path, 'utf8');
         const migration2SQL = fs.readFileSync(migration2Path, 'utf8');
