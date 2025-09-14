@@ -1,13 +1,181 @@
 {% extends "template/portal.njk" %}
 {% block content %}
-    <div class="section pt-lg-0">
-        <div class="r-container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>{{ t('nav.blog') }}</h1>
-                    <p>Blog content coming soon...</p>
+    <!-- Hero Section -->
+    <div class="section position-relative" style="background-image: url(/public/portal/image/breeds/exotic-hero.jpg); min-height: 50vh;">
+        <div class="image-overlay"></div>
+        <div class="r-container section position-relative" style="z-index: 2;">
+            <div class="row align-items-center" style="min-height: 40vh;">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="text-white fw-bold display-4 mb-4 text-shadow">{{ t('gallery.title') }}</h1>
+                    <p class="text-white fs-5 mb-4 text-shadow">{{ t('gallery.subtitle') }}</p>
+                    <nav aria-label="breadcrumb" class="justify-content-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/" class="text-white text-decoration-none">
+                                    <i class="fa-solid fa-home me-1"></i>{{ t('nav.home') }}
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">
+                                <i class="fa-solid fa-images me-1"></i>{{ t('gallery.title') }}
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Gallery Section -->
+    <div class="section">
+        <div class="r-container">
+            <div class="text-center mb-5">
+                <span class="font-1 accent-color-2 fs-3">{{ t('gallery.ourDeliveries') }}</span>
+                <h2 class="font-2 fw-semibold">{{ t('gallery.deliveriesTitle') }}</h2>
+                <p class="text-gray fs-5">{{ t('gallery.deliveriesDesc') }}</p>
+            </div>
+            
+            <!-- Gallery Layout - Following Original Template Pattern -->
+            <div class="gallery row row-cols-lg-2 row-cols-1">
+                <!-- Left Column -->
+                <div class="col">
+                    <div class="mb-4">
+                        <a href="/public/portal/image/deliveries/IMG-20250907-WA0107.jpg" data-fslightbox="gallery">
+                            <img src="/public/portal/image/deliveries/IMG-20250907-WA0107.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                        </a>
+                    </div>
+                    <div class="row row-cols-lg-2 row-cols-1">
+                        <div class="col mb-4">
+                            <div class="">
+                                <a href="/public/portal/image/deliveries/IMG-20250907-WA0108.jpg" data-fslightbox="gallery">
+                                    <img src="/public/portal/image/deliveries/IMG-20250907-WA0108.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="">
+                                <a href="/public/portal/image/deliveries/IMG-20250907-WA0109.jpg" data-fslightbox="gallery">
+                                    <img src="/public/portal/image/deliveries/IMG-20250907-WA0109.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="col mb-3">
+                    <div class="row row-cols-lg-2 row-cols-1">
+                        <div class="col mb-4">
+                            <div class="">
+                                <a href="/public/portal/image/deliveries/IMG-20250907-WA0110.jpg" data-fslightbox="gallery">
+                                    <img src="/public/portal/image/deliveries/IMG-20250907-WA0110.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="">
+                                <a href="/public/portal/image/deliveries/IMG-20250907-WA0111.jpg" data-fslightbox="gallery">
+                                    <img src="/public/portal/image/deliveries/IMG-20250907-WA0111.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <a href="/public/portal/image/deliveries/IMG-20250907-WA0112.jpg" data-fslightbox="gallery">
+                            <img src="/public/portal/image/deliveries/IMG-20250907-WA0112.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Images Row -->
+            <div class="gallery row g-4 mt-2">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0113.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0113.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0114.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0114.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0115.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0115.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0116.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0116.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0117.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0117.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0118.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0118.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0119.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0119.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0120.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0120.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0121.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0121.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="/public/portal/image/deliveries/IMG-20250907-WA0122.jpg" data-fslightbox="gallery">
+                        <img src="/public/portal/image/deliveries/IMG-20250907-WA0122.jpg" alt="Entrega felina" class="img-fluid w-100 rounded-4">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Gallery Styles - Following Original Template Pattern */
+.gallery a {
+    transition: all 0.5s ease;
+    display: block;
+}
+
+.gallery a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gallery img {
+    transition: transform 0.5s ease;
+}
+
+.gallery a:hover img {
+    transform: scale(1.02);
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Gallery loaded with fslightbox');
+    
+    // fslightbox will handle the gallery functionality automatically
+    // No additional JavaScript needed
+});
+</script>
 {% endblock %}

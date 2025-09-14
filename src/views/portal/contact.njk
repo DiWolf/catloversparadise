@@ -3,91 +3,196 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<!-- Contact Section -->
-<section class="section py-5">
-    <div class="r-container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h1 class="display-4 fw-bold mb-4">Contacto</h1>
-                <p class="lead">¿Tienes preguntas? ¡Nos encantaría escucharte!</p>
+<!-- Hero Section -->
+<div class="section position-relative" style="background-image: url(/public/portal/image/breeds/exotic-hero.jpg); min-height: 50vh;">
+    <div class="image-overlay"></div>
+    <div class="r-container section position-relative" style="z-index: 2;">
+        <div class="row align-items-center" style="min-height: 40vh;">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="text-white fw-bold display-4 mb-4 text-shadow">{{ t('contact.contactUs') }}</h1>
+                <p class="text-white fs-5 mb-4 text-shadow">{{ t('contact.sendMessage') }}</p>
+                <nav aria-label="breadcrumb" class="justify-content-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/" class="text-white text-decoration-none">
+                                <i class="fa-solid fa-home me-1"></i>{{ t('nav.home') }}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">
+                            <i class="fa-solid fa-envelope me-1"></i>{{ t('contact.contactUs') }}
+                        </li>
+                    </ol>
+                </nav>
             </div>
         </div>
-        
-        <div class="row">
-            <div class="col-lg-8 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Envíanos un mensaje</h5>
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Nombre *</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email *</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="col-12">
-                                    <label for="subject" class="form-label">Asunto *</label>
-                                    <input type="text" class="form-control" id="subject" required>
-                                </div>
-                                <div class="col-12">
-                                    <label for="message" class="form-label">Mensaje *</label>
-                                    <textarea class="form-control" id="message" rows="5" required></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa-solid fa-paper-plane me-2"></i>Enviar Mensaje
-                                    </button>
+    </div>
+</div>
+
+<div class="section">
+    <div class="r-container">
+        <div class="row row-cols-lg-3 row-cols-1">
+            <div class="col mb-3 px-lg-3 px-0">
+                <div class="p-lg-5 p-3 shadow-sm rounded-3 bg-light-color">
+                    <div class="d-flex flex-row gap-4 align-items-center">
+                        <div>
+                            <div class="bg-accent-color d-flex align-items-center justify-content-center rounded-circle p-3"
+                                style="width: 5rem; height: 5rem;">
+                                <div class="fw-semibold text-white m-0" style="font-size: 2rem;">
+                                    <i class="fa-solid fa-location-dot"></i>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div>
+                            <h5 class="m-0 fw-semibold">{{ t('contact.location') }}</h5>
+                            <span>{{ t('contact.address') }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Información de Contacto</h5>
-                        <div class="contact-info">
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fa fa-location-dot fa-2x text-primary me-3"></i>
-                                <div>
-                                    <h6 class="mb-0">Dirección</h6>
-                                    <p class="text-muted mb-0">Esperanza #139 Col. Industrial<br>Gustavo A. Madero, CP 07800, Ciudad de México</p>
+            <div class="col mb-3 px-lg-3 px-0">
+                <div class="p-lg-5 p-3 shadow-sm rounded-3 bg-light-color">
+                    <div class="d-flex flex-row gap-4 align-items-center">
+                        <div>
+                            <div class="bg-accent-color d-flex align-items-center justify-content-center rounded-circle p-3"
+                                style="width: 5rem; height: 5rem;">
+                                <div class="fw-semibold text-white m-0" style="font-size: 2rem;">
+                                    <i class="fa-solid fa-phone"></i>
                                 </div>
                             </div>
-                            
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fa fa-phone fa-2x text-success me-3"></i>
-                                <div>
-                                    <h6 class="mb-0">Teléfono</h6>
-                                    <p class="text-muted mb-0">+52 55 4553 1362</p>
+                        </div>
+                        <div>
+                            <h5 class="m-0 fw-semibold">{{ t('contact.phone') }}</h5>
+                            <span>{{ t('contact.phoneNumber') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-3 px-lg-3 px-0">
+                <div class="p-lg-5 p-3 shadow-sm rounded-3 bg-light-color">
+                    <div class="d-flex flex-row gap-4 align-items-center">
+                        <div>
+                            <div class="bg-accent-color d-flex align-items-center justify-content-center rounded-circle p-3"
+                                style="width: 5rem; height: 5rem;">
+                                <div class="fw-semibold text-white m-0" style="font-size: 2rem;">
+                                    <i class="fa-solid fa-envelope"></i>
                                 </div>
                             </div>
-                            
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fa fa-envelope fa-2x text-info me-3"></i>
-                                <div>
-                                    <h6 class="mb-0">Email</h6>
-                                    <p class="text-muted mb-0">info@catloversparadise.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex align-items-center">
-                                <i class="fa fa-clock fa-2x text-warning me-3"></i>
-                                <div>
-                                    <h6 class="mb-0">Horarios</h6>
-                                    <p class="text-muted mb-0">Lun - Vie: 9:00 - 18:00<br>Sáb: 10:00 - 16:00</p>
-                                </div>
-                            </div>
+                        </div>
+                        <div>
+                            <h5 class="m-0 fw-semibold">{{ t('contact.email') }}</h5>
+                            <span>{{ t('contact.emailAddress') }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="d-flex flex-column">
+            <div class="mx-auto mb-3 text-center" style="max-width: 754px;">
+                <span class="font-1 accent-color-2 fs-3">{{ t('contact.contactUs') }}</span>
+                <div class="mb-4">
+                    <h3 class="font-2 fw-semibold">{{ t('contact.sendMessage') }}</h3>
+                </div>
+                <p class="text-gray">
+                    {{ t('contact.description') }}
+                </p>
+            </div>
+            <div class="bg-light-color shadow-sm d-flex flex-column p-5">
+                <div class="success_msg toast align-items-center w-100 shadow-none mb-3 border border-success rounded-0 my-4"
+                    role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex p-2">
+                        <div class="toast-body f-18 d-flex flex-row gap-3 align-items-center text-success">
+                            <i class="fa-solid fa-check f-36 text-success"></i>
+                            {{ t('contact.successMessage') }}
+                        </div>
+                        <button type="button" class="me-2 m-auto bg-transparent border-0 ps-1 pe-0 text-success"
+                            data-bs-dismiss="toast" aria-label="Close"><i
+                                class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                <div class="error_msg toast align-items-center w-100 shadow-none border-danger mb-3 my-4 border rounded-0"
+                    role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex p-2">
+                        <div class="toast-body f-18 d-flex flex-row gap-3 align-items-center text-danger">
+                            <i class="fa-solid fa-triangle-exclamation f-36 text-danger"></i>
+                            {{ t('contact.errorMessage') }}
+                        </div>
+                        <button type="button" class="me-2 m-auto bg-transparent border-0 ps-1 pe-0 text-danger"
+                            data-bs-dismiss="toast" aria-label="Close"><i
+                                class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                <form class="d-flex flex-column h-100 justify-content-center w-100 needs-validation mb-3 form"
+                    novalidate>
+                    <div class="row row-cols-lg-2 row-cols-1">
+                        <div class="col mb-3">
+                            <input type="text" class="form-control py-3 px-4" name="first_name" id="first_name"
+                                placeholder="{{ t('contact.firstName') }}" required>
+                            <div class="invalid-feedback">
+                                {{ t('contact.fieldRequired') }}
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <input type="text" class="form-control py-3 px-4" name="last_name" id="last_name"
+                                placeholder="{{ t('contact.lastName') }}" required>
+                            <div class="invalid-feedback">
+                                {{ t('contact.fieldRequired') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-cols-lg-2 row-cols-1">
+                        <div class="col mb-3">
+                            <input type="email" class="form-control py-3 px-4" name="email" id="email"
+                                placeholder="{{ t('contact.emailPlaceholder') }}" required>
+                            <div class="invalid-feedback">
+                                {{ t('contact.fieldRequired') }}
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <input type="tel" class="form-control py-3 px-4" name="phone" id="phone"
+                                placeholder="{{ t('contact.phonePlaceholder') }}" required>
+                            <div class="invalid-feedback">
+                                {{ t('contact.fieldRequired') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control py-3 px-4" id="message" name="message" rows="5"
+                            placeholder="{{ t('contact.messagePlaceholder') }}"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-accent submit_form py-3 w-100">
+                            {{ t('contact.sendButton') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</section>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Hero Section Styles */
+.hero-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--accent-color) !important;
+}
+</style>
 {% endblock %}
