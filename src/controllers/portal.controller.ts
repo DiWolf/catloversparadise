@@ -1,16 +1,29 @@
 import { Request, Response } from 'express';
 import { CatService } from '../services/CatService';
+import { getSEOConfig } from '../config/seo';
+import { generateMetaTags } from '../middlewares/seo';
+import EmailService, { ContactFormData } from '../services/EmailService';
 
 const portalController = {
     getHome: (req: Request, res: Response) => {
+        const seo = getSEOConfig('home');
         res.render('portal/home', {
-            title: 'Inicio - Cat Lovers Paradise'
+            title: seo.title,
+            seo: {
+                ...seo,
+                metaTags: generateMetaTags(seo)
+            }
         });
     },
     
     getAbout: (req: Request, res: Response) => {
+        const seo = getSEOConfig('about');
         res.render('portal/about', {
-            title: 'Sobre Nosotros - Cat Lovers Paradise'
+            title: seo.title,
+            seo: {
+                ...seo,
+                metaTags: generateMetaTags(seo)
+            }
         });
     },
     
@@ -65,8 +78,13 @@ const portalController = {
                 };
             });
             
+            const seo = getSEOConfig('breeds');
             res.render('portal/breeds', {
-                title: 'Nuestras Razas - Cat Lovers Paradise',
+                title: seo.title,
+                seo: {
+                    ...seo,
+                    metaTags: generateMetaTags(seo)
+                },
                 cats: catsWithTranslations
             });
         } catch (error) {
@@ -102,8 +120,18 @@ const portalController = {
                 care: translation?.care || cat.care
             };
             
-            res.render('gatos/info', {
+            const seo = getSEOConfig(breed, {
                 title: `${displayCat.name} - Cat Lovers Paradise`,
+                description: displayCat.description,
+                keywords: [...getSEOConfig(breed).keywords, displayCat.name.toLowerCase()]
+            });
+            
+            res.render('gatos/info', {
+                title: seo.title,
+                seo: {
+                    ...seo,
+                    metaTags: generateMetaTags(seo)
+                },
                 breed: cat.slug,
                 cat: displayCat
             });
@@ -116,14 +144,24 @@ const portalController = {
     },
     
     getContact: (req: Request, res: Response) => {
+        const seo = getSEOConfig('contact');
         res.render('portal/contact', {
-            title: 'Contacto - Cat Lovers Paradise'
+            title: seo.title,
+            seo: {
+                ...seo,
+                metaTags: generateMetaTags(seo)
+            }
         });
     },
     
     getBlog: (req: Request, res: Response) => {
+        const seo = getSEOConfig('gallery');
         res.render('portal/blog', {
-            title: 'Blog - Cat Lovers Paradise'
+            title: seo.title,
+            seo: {
+                ...seo,
+                metaTags: generateMetaTags(seo)
+            }
         });
     },
     
@@ -170,6 +208,95 @@ const portalController = {
         } else {
             // Si el idioma no es válido, redirigir a home
             res.redirect('/');
+        }
+    },
+
+    submitContact: async (req: Request, res: Response) => {
+        try {
+            console.log('📧 Intentando enviar email de contacto...');
+            console.log('📋 Datos recibidos:', req.body);
+
+            const { first_name, last_name, email, phone, message } = req.body;
+
+            // Validar campos requeridos
+            if (!first_name || !last_name || !email || !phone || !message) {
+                console.log('❌ Validación fallida: campos requeridos faltantes');
+                return res.status(400).json({ 
+                    success: false, 
+                    message: 'Todos los campos son requeridos' 
+                });
+            }
+
+            // Validar formato de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                console.log('❌ Validación fallida: formato de email inválido');
+                return res.status(400).json({ 
+                    success: false, 
+                    message: 'El formato del email no es válido' 
+                });
+            }
+
+            const formData: ContactFormData = {
+                firstName: first_name.trim(),
+                lastName: last_name.trim(),
+                email: email.trim(),
+                phone: phone.trim(),
+                message: message.trim()
+            };
+
+            console.log('✅ Datos validados correctamente');
+            console.log('📤 Enviando email de contacto...');
+
+            // Verificar si las credenciales están configuradas
+            if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+                console.log('❌ Error: Credenciales de email no configuradas');
+                return res.status(500).json({ 
+                    success: false, 
+                    message: 'El sistema de email no está configurado. Por favor, contacta al administrador.' 
+                });
+            }
+
+            // Enviar email de contacto
+            const emailSent = await EmailService.sendContactEmail(formData);
+            
+            if (!emailSent) {
+                console.log('❌ Error: No se pudo enviar el email de contacto');
+                return res.status(500).json({ 
+                    success: false, 
+                    message: 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.' 
+                });
+            }
+
+            console.log('✅ Email de contacto enviado exitosamente');
+            console.log('📤 Enviando email de confirmación...');
+
+            // Enviar email de confirmación al usuario
+            const confirmationSent = await EmailService.sendConfirmationEmail(formData);
+            
+            if (confirmationSent) {
+                console.log('✅ Email de confirmación enviado exitosamente');
+            } else {
+                console.log('⚠️  Advertencia: No se pudo enviar el email de confirmación');
+            }
+
+            res.json({ 
+                success: true, 
+                message: 'Mensaje enviado exitosamente. Te contactaremos pronto.' 
+            });
+
+        } catch (error) {
+            console.error('❌ Error en submitContact:', error);
+            console.error('📋 Detalles del error:', {
+                message: error.message,
+                code: error.code,
+                stack: error.stack
+            });
+            
+            res.status(500).json({ 
+                success: false, 
+                message: 'Error interno del servidor. Por favor, inténtalo de nuevo.' 
+            });
         }
     }
 }

@@ -1,0 +1,37 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://catloversparadise.com/sitemap.xml
+
+# Crawl-delay para ser respetuoso con el servidor
+Crawl-delay: 1
+
+# Permitir acceso a recursos estáticos
+Allow: /public/
+Allow: /portal/css/
+Allow: /portal/js/
+Allow: /portal/image/
+
+# Bloquear acceso a archivos de configuración
+Disallow: /src/
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /*.json
+Disallow: /*.md
+Disallow: /env*
+Disallow: /package*
+Disallow: /tsconfig*
+Disallow: /jest*
+
+# Bloquear páginas de administración
+Disallow: /admin/
+Disallow: /api/
+
+# Permitir acceso a páginas principales
+Allow: /
+Allow: /about
+Allow: /gallery
+Allow: /contact
+Allow: /breeds
+

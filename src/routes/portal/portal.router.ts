@@ -10,6 +10,7 @@ router.get('/cats', portalController.getCats);
 router.get('/breeds', portalController.getBreeds);
 router.get('/breed/:breed', portalController.getBreedInfo);
 router.get('/contact', portalController.getContact);
+router.post('/contact', portalController.submitContact);
 router.get('/blog', portalController.getBlog);
 
 // Páginas legales y de soporte

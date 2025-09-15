@@ -23,6 +23,9 @@ import adminRouter from '@routes/admin/admin.router';
 //Rutas
 const localesPath = path.join(process.cwd(), "locales");
 
+// SEO Routes
+import sitemapRouter from '@routes/sitemap';
+
 const app = express();
 
 // Servir archivos estáticos desde /public
@@ -217,6 +220,9 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);
+
+// SEO Routes
+app.use("/", sitemapRouter);
 
 //app.use("/artemis/blog/categories",adminCategoriesRouter)
 

@@ -3,12 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- SEO Meta Tags -->
+        {% if seo %}
+            {{ seo.metaTags | safe }}
+        {% else %}
+            <title>{{ title or "Cat Lovers Paradise" }}</title>
+            <meta name="description" content="Criadores profesionales de gatos de raza en México. Especialistas en Sphynx, Maine Coon, Bengal, Exótico y más.">
+            <meta name="keywords" content="criadores gatos, gatos de raza, sphynx, maine coon, bengal, gato exótico, gatos pedigree, criaderos méxico">
+        {% endif %}
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/public/portal/image/logo.png">
+        <link rel="apple-touch-icon" href="/public/portal/image/logo.png">
+        
+        <!-- Stylesheets -->
         <link rel="stylesheet" href="/public/portal/css/style.css">
-        <title>
-            {% block title %}
-                {{ title or "Cat Lovers Paradise" }}
-            {% endblock %}
-        </title>
+        
+        <!-- Additional SEO -->
+        <link rel="alternate" hreflang="es" href="{{ canonical or 'https://catloversparadise.com' }}">
+        <link rel="alternate" hreflang="en" href="{{ canonical or 'https://catloversparadise.com' }}/en">
+        
+        <!-- Analytics Scripts -->
+        {% if analytics %}
+            {{ analytics | safe }}
+        {% endif %}
+        
+        {% block extra_head %}{% endblock %}
     </head>
     <body>
         <!-- Header -->
