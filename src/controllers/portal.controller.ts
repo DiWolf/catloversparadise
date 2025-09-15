@@ -288,9 +288,9 @@ const portalController = {
         } catch (error) {
             console.error('❌ Error en submitContact:', error);
             console.error('📋 Detalles del error:', {
-                message: error.message,
-                code: error.code,
-                stack: error.stack
+                message: error instanceof Error ? error.message : 'Error desconocido',
+                code: (error as any)?.code || 'UNKNOWN',
+                stack: error instanceof Error ? error.stack : undefined
             });
             
             res.status(500).json({ 

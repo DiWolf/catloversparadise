@@ -8,6 +8,7 @@ export interface ImageSEO {
     height?: number;
     loading?: 'lazy' | 'eager';
     decoding?: 'async' | 'sync' | 'auto';
+    className?: string;
 }
 
 export function generateImageSEO(

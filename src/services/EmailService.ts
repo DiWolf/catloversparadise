@@ -94,18 +94,22 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'America/Mexico_City' })
             console.log('✅ Email enviado exitosamente:', info.messageId);
             return true;
         } catch (error) {
-            console.error('❌ Error enviando email:', error.message);
-            console.error('📋 Código de error:', error.code);
-            console.error('📋 Tipo de error:', error.name);
+            const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+            const errorCode = (error as any)?.code || 'UNKNOWN';
+            const errorName = (error as any)?.name || 'UnknownError';
+            
+            console.error('❌ Error enviando email:', errorMessage);
+            console.error('📋 Código de error:', errorCode);
+            console.error('📋 Tipo de error:', errorName);
             
             // Información adicional para depuración
-            if (error.code === 'ECONNREFUSED') {
+            if (errorCode === 'ECONNREFUSED') {
                 console.error('🔧 El servidor SMTP no está disponible o el puerto está bloqueado');
-            } else if (error.code === 'EAUTH') {
+            } else if (errorCode === 'EAUTH') {
                 console.error('🔧 Error de autenticación - verifica usuario y contraseña');
-            } else if (error.message.includes('Greeting never received')) {
+            } else if (errorMessage.includes('Greeting never received')) {
                 console.error('🔧 El servidor no responde correctamente - problema de configuración SSL/TLS');
-            } else if (error.message.includes('timeout')) {
+            } else if (errorMessage.includes('timeout')) {
                 console.error('🔧 Timeout de conexión - el servidor tarda mucho en responder');
             }
             
@@ -169,7 +173,8 @@ Este es un mensaje automático, por favor no respondas a este email.
             console.log('Email de confirmación enviado exitosamente:', info.messageId);
             return true;
         } catch (error) {
-            console.error('Error enviando email de confirmación:', error);
+            const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+            console.error('Error enviando email de confirmación:', errorMessage);
             return false;
         }
     }

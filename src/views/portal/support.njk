@@ -1,0 +1,202 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="section position-relative" style="background-image: url(/public/portal/image/breeds/bengal-hero.jpg); min-height: 50vh;">
+    <div class="image-overlay"></div>
+    <div class="r-container section position-relative" style="z-index: 2;">
+        <div class="row align-items-center" style="min-height: 40vh;">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="text-white fw-bold display-4 mb-4 text-shadow">{{ t('support.title') }}</h1>
+                <p class="text-white fs-5 mb-4 text-shadow">{{ t('support.subtitle') }}</p>
+                <nav aria-label="breadcrumb" class="justify-content-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/" class="text-white text-decoration-none">
+                                <i class="fa-solid fa-home me-1"></i>{{ t('nav.home') }}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">
+                            <i class="fa-solid fa-life-ring me-1"></i>{{ t('support.title') }}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="r-container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h2 class="font-2 fw-semibold mb-3">{{ t('support.helpTitle') }}</h2>
+                    <p class="text-gray fs-5">{{ t('support.helpDescription') }}</p>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <h3 class="font-2 fw-semibold mb-4">{{ t('support.faqTitle') }}</h3>
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                        {{ t('support.faq1.question') }}
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        {{ t('support.faq1.answer') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                        {{ t('support.faq2.question') }}
+                                    </button>
+                                </h2>
+                                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        {{ t('support.faq2.answer') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                        {{ t('support.faq3.question') }}
+                                    </button>
+                                </h2>
+                                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        {{ t('support.faq3.answer') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                        {{ t('support.faq4.question') }}
+                                    </button>
+                                </h2>
+                                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        {{ t('support.faq4.answer') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="bg-accent-color d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 4rem; height: 4rem;">
+                                    <i class="fa-solid fa-envelope text-white fs-4"></i>
+                                </div>
+                                <h5 class="card-title">{{ t('support.emailTitle') }}</h5>
+                                <p class="card-text">{{ t('support.emailDescription') }}</p>
+                                <a href="mailto:contacto@catloversparadise.org" class="btn btn-accent">
+                                    {{ t('support.emailButton') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="bg-accent-color d-flex align-items-center justify-content-center rounded-circle mx-auto mb-3" style="width: 4rem; height: 4rem;">
+                                    <i class="fa-solid fa-phone text-white fs-4"></i>
+                                </div>
+                                <h5 class="card-title">{{ t('support.phoneTitle') }}</h5>
+                                <p class="card-text">{{ t('support.phoneDescription') }}</p>
+                                <a href="tel:+525512345678" class="btn btn-accent">
+                                    {{ t('support.phoneButton') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Help -->
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="bg-light-color p-4 rounded-3">
+                            <h4 class="font-2 fw-semibold mb-3">{{ t('support.additionalHelp') }}</h4>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <a href="/contact" class="text-decoration-none">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-solid fa-comments me-2 accent-color"></i>
+                                            <span>{{ t('support.contactForm') }}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <a href="/about" class="text-decoration-none">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-solid fa-info-circle me-2 accent-color"></i>
+                                            <span>{{ t('support.aboutUs') }}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <a href="/breeds" class="text-decoration-none">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-solid fa-paw me-2 accent-color"></i>
+                                            <span>{{ t('support.breeds') }}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Hero Section Styles */
+.hero-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--accent-color) !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--accent-color-rgb), 0.25);
+}
+</style>
+{% endblock %}
