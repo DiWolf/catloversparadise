@@ -37,6 +37,21 @@ export class EmailService {
         });
     }
 
+    private getBaseUrl(): string {
+        // Si está configurado en variables de entorno, usarlo
+        if (process.env.BASE_URL) {
+            return process.env.BASE_URL;
+        }
+        
+        // Si estamos en producción, usar el dominio de producción
+        if (process.env.NODE_ENV === 'production') {
+            return 'https://catloversparadise.org';
+        }
+        
+        // Para desarrollo, usar localhost
+        return 'http://localhost:3000';
+    }
+
     async sendContactEmail(formData: ContactFormData): Promise<boolean> {
         try {
             console.log('📧 Preparando email de contacto...');
@@ -121,6 +136,9 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'America/Mexico_City' })
         try {
             const { firstName, lastName, email } = formData;
             
+            // Determinar la URL base correcta
+            const baseUrl = this.getBaseUrl();
+            
             const mailOptions = {
                 from: '"Cat Lovers Paradise" <noreply@catloversparadise.org>',
                 to: email,
@@ -139,9 +157,9 @@ Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'America/Mexico_City' })
                         <div style="background-color: #ffffff; padding: 20px; border: 1px solid #dee2e6; border-radius: 5px;">
                             <h3 style="color: #495057;">¿Qué puedes hacer mientras tanto?</h3>
                             <ul>
-                                <li>Explora nuestras <a href="${process.env.BASE_URL || 'http://localhost:3000'}/breeds">razas de gatos disponibles</a></li>
-                                <li>Conoce más <a href="${process.env.BASE_URL || 'http://localhost:3000'}/about">sobre nosotros</a></li>
-                                <li>Visita nuestra <a href="${process.env.BASE_URL || 'http://localhost:3000'}/blog">galería de fotos</a></li>
+                                <li>Explora nuestras <a href="${baseUrl}/breeds">razas de gatos disponibles</a></li>
+                                <li>Conoce más <a href="${baseUrl}/about">sobre nosotros</a></li>
+                                <li>Visita nuestra <a href="${baseUrl}/blog">galería de fotos</a></li>
                             </ul>
                         </div>
                         
@@ -159,9 +177,9 @@ Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.
 Nuestro equipo revisará tu consulta y te responderá en un plazo máximo de 24 horas.
 
 ¿Qué puedes hacer mientras tanto?
-- Explora nuestras razas de gatos disponibles
-- Conoce más sobre nosotros
-- Visita nuestra galería de fotos
+- Explora nuestras razas de gatos disponibles: ${baseUrl}/breeds
+- Conoce más sobre nosotros: ${baseUrl}/about
+- Visita nuestra galería de fotos: ${baseUrl}/blog
 
 ---
 Cat Lovers Paradise - Donde los gatos encuentran su hogar perfecto
