@@ -1,27 +1,116 @@
 {% extends "template/portal.njk" %}
 
-{% block title %}Error del servidor - Cat Lovers Paradise{% endblock %}
+{% block title %}{{ t('error.500.title') }} - Cat Lovers Paradise{% endblock %}
 
 {% block content %}
 <div class="container-fluid py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-8 text-center">
             <div class="error-template">
+                <!-- Imagen de error 500 -->
+                <div class="mb-4">
+                    <img src="/public/portal/image/error500.jpeg" alt="{{ t('error.500.title') }}" class="img-fluid" style="max-width: 400px; border-radius: 15px;" onerror="this.src='/public/portal/image/dummy-img-600x400.jpg'">
+                </div>
+                
                 <h1 class="display-1 text-danger">500</h1>
-                <h2 class="mb-4">Error del servidor</h2>
-                <p class="lead text-muted mb-4">
-                    Lo sentimos, ha ocurrido un error interno. Nuestro equipo técnico ha sido notificado.
-                </p>
+                <h2 class="mb-4">{{ t('error.500.message') }}</h2>
+                
+                <div class="alert alert-danger mb-4">
+                    <h4>🐱 {{ t('error.500.whatsHappening') }}</h4>
+                    <p class="mb-0">
+                        {{ t('error.500.whatsHappeningDesc') }}
+                    </p>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card border-danger">
+                            <div class="card-body text-center">
+                                <i class="fas fa-cat fa-3x text-danger mb-3"></i>
+                                <h5>{{ t('error.500.viewCats') }}</h5>
+                                <p class="small">{{ t('error.500.viewCatsDesc') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-warning">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope fa-3x text-warning mb-3"></i>
+                                <h5>{{ t('error.500.contact') }}</h5>
+                                <p class="small">{{ t('error.500.contactDesc') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-info">
+                            <div class="card-body text-center">
+                                <i class="fas fa-clock fa-3x text-info mb-3"></i>
+                                <h5>{{ t('error.500.wait') }}</h5>
+                                <p class="small">{{ t('error.500.waitDesc') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info mb-4">
+                    <h5>{{ t('error.500.funFacts') }}</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>{{ t('error.500.catIntelligence') }}</strong><br>
+                            <small>{{ t('error.500.catIntelligenceDesc') }}</small>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{{ t('error.500.speed') }}</strong><br>
+                            <small>{{ t('error.500.speedDesc') }}</small>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                     <a href="/" class="btn btn-primary btn-lg">
-                        <i class="fas fa-home"></i> Ir al Inicio
+                        <i class="fas fa-home"></i> {{ t('error.500.goHome') }}
                     </a>
-                    <a href="/contact" class="btn btn-outline-primary btn-lg">
-                        <i class="fas fa-envelope"></i> Contactar Soporte
+                    <a href="/catalog" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-cat"></i> {{ t('error.500.viewCats') }}
                     </a>
+                    <button onclick="location.reload()" class="btn btn-outline-success btn-lg">
+                        <i class="fas fa-redo"></i> {{ t('error.500.wait30s') }}
+                    </button>
+                </div>
+                
+                <div class="mt-4">
+                    <small class="text-muted">
+                        <i class="fas fa-heart text-danger"></i> 
+                        {{ t('error.500.description') }}
+                    </small>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.error-template {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.alert {
+    border-radius: 15px;
+}
+
+.btn {
+    border-radius: 25px;
+}
+</style>
 {% endblock %}
