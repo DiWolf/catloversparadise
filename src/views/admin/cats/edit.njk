@@ -113,7 +113,7 @@
                                 </h6>
                             </div>
                             
-                            {% set spTranslation = cat.translations.find(t => t.language === 'sp') %}
+                            {% set spTranslation = cat.translations | selectattr('language', 'equalto', 'sp') | first %}
                             
                             <div class="col-12 mb-3">
                                 <label for="name_sp" class="form-label">Nombre en Español</label>
@@ -150,7 +150,7 @@
                                 </h6>
                             </div>
                             
-                            {% set engTranslation = cat.translations.find(t => t.language === 'eng') %}
+                            {% set engTranslation = cat.translations | selectattr('language', 'equalto', 'eng') | first %}
                             
                             <div class="col-12 mb-3">
                                 <label for="name_eng" class="form-label">Nombre en Inglés</label>

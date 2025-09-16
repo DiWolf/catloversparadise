@@ -76,6 +76,9 @@ jobs:
           PassengerStartupFile dist/app.js
           EOF
 
+      # Nota: Para ejecutar migraciones en cPanel, ejecutar manualmente:
+      # npm run migrate-prod
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

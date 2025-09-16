@@ -1,0 +1,220 @@
+{% extends "admin/layout.njk" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0">Gestión de Catálogo</h1>
+                <a href="/admin/listings/create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Gato
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Filtros</h6>
+        </div>
+        <div class="card-body">
+            <form method="GET" class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="cat_id" class="form-label">Raza</label>
+                    <select class="form-control" id="cat_id" name="cat_id">
+                        <option value="">Todas las razas</option>
+                        {% for cat in cats %}
+                        <option value="{{ cat.id }}" {{ filters.cat_id == cat.id ? 'selected' : '' }}>
+                            {{ cat.breed }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="gender" class="form-label">Género</label>
+                    <select class="form-control" id="gender" name="gender">
+                        <option value="">Todos</option>
+                        <option value="male" {{ filters.gender == 'male' ? 'selected' : '' }}>Macho</option>
+                        <option value="female" {{ filters.gender == 'female' ? 'selected' : '' }}>Hembra</option>
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="status" class="form-label">Estado</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="">Todos</option>
+                        <option value="available" {{ filters.status == 'available' ? 'selected' : '' }}>Disponible</option>
+                        <option value="reserved" {{ filters.status == 'reserved' ? 'selected' : '' }}>Reservado</option>
+                        <option value="sold" {{ filters.status == 'sold' ? 'selected' : '' }}>Vendido</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="search" class="form-label">Buscar</label>
+                    <input type="text" class="form-control" id="search" name="search" 
+                           placeholder="Nombre, raza, color..." value="{{ filters.search or '' }}">
+                </div>
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="fas fa-search"></i> Filtrar
+                    </button>
+                    <a href="/admin/listings" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Limpiar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lista de gatos -->
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Gatos en Catálogo ({{ listings.length }})</h6>
+        </div>
+        <div class="card-body">
+            {% if listings.length > 0 %}
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Raza</th>
+                            <th>Género</th>
+                            <th>Edad</th>
+                            <th>Color</th>
+                            <th>Precios</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for listing in listings %}
+                        <tr>
+                            <td>
+                                {% if listing.images and listing.images.length > 0 %}
+                                <img src="{{ listing.images[0] }}" alt="{{ listing.name }}" 
+                                     class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                                {% else %}
+                                <div class="bg-light d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px;">
+                                    <i class="fas fa-cat text-gray-400"></i>
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <strong>{{ listing.name }}</strong>
+                                {% if listing.special_characteristics %}
+                                <br><small class="text-muted">{{ listing.special_characteristics }}</small>
+                                {% endif %}
+                            </td>
+                            <td>{{ listing.cat.breed }}</td>
+                            <td>
+                                {% if listing.gender === 'male' %}
+                                <span class="badge badge-primary">Macho</span>
+                                {% else %}
+                                <span class="badge badge-pink">Hembra</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ listing.age_months }} meses</td>
+                            <td>
+                                {% if listing.color %}
+                                {{ listing.color }}
+                                {% if listing.eye_color %}<br><small>{{ listing.eye_color }} ojos</small>{% endif %}
+                                {% else %}
+                                <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if listing.pet_price %}
+                                <small class="text-success">Mascota: ${{ listing.pet_price }}</small>
+                                {% endif %}
+                                {% if listing.breeding_price %}
+                                <br><small class="text-info">Cría: ${{ listing.breeding_price }}</small>
+                                {% endif %}
+                                {% if not listing.pet_price and not listing.breeding_price %}
+                                <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method="POST" action="/admin/listings/{{ listing.id }}/status" class="d-inline">
+                                    <select name="status" class="form-control form-control-sm" 
+                                            onchange="this.form.submit()">
+                                        <option value="available" {{ listing.status === 'available' ? 'selected' : '' }}>
+                                            Disponible
+                                        </option>
+                                        <option value="reserved" {{ listing.status === 'reserved' ? 'selected' : '' }}>
+                                            Reservado
+                                        </option>
+                                        <option value="sold" {{ listing.status === 'sold' ? 'selected' : '' }}>
+                                            Vendido
+                                        </option>
+                                    </select>
+                                </form>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a href="/admin/listings/{{ listing.id }}/edit" 
+                                       class="btn btn-sm btn-primary" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-danger" 
+                                            onclick="confirmDelete({{ listing.id }}, '{{ listing.name }}')" 
+                                            title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-cat fa-4x text-gray-300 mb-4"></i>
+                <h4 class="text-gray-500">No hay gatos en el catálogo</h4>
+                <p class="text-gray-500">Comienza agregando el primer gato al catálogo</p>
+                <a href="/admin/listings/create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Primer Gato
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres eliminar el gato <strong id="catName"></strong> del catálogo?</p>
+                <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form id="deleteForm" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete(id, name) {
+    document.getElementById('catName').textContent = name;
+    document.getElementById('deleteForm').action = '/admin/listings/' + id + '/delete';
+    
+    // Usar Bootstrap 5 nativo (sin jQuery)
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+}
+</script>
+{% endblock %}

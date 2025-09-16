@@ -26,10 +26,18 @@ const localesPath = path.join(process.cwd(), "locales");
 // SEO Routes
 import sitemapRouter from '@routes/sitemap';
 
+// Health Check Routes
+import healthRouter from '@routes/health';
+
+// Simple Upload Routes eliminadas
+
 const app = express();
 
 // Servir archivos estáticos desde /public
 app.use("/public", express.static(path.join(__dirname, "..", "public")));
+
+// Servir imágenes de uploads
+app.use("/uploads", express.static(path.join(__dirname, "..", "public", "uploads")));
 
 app.use(cookieParser()); // <-- antes que i18n.init
 
@@ -158,9 +166,20 @@ env.addFilter("date", function (value: any, format: string) {
 // Configurar flash
 app.use(flash()); // Habilitar connect-flash
 
-// Middleware nativo de Express para parsear JSON
+// Rutas de upload eliminadas - usando las rutas normales del admin
+
+// Middleware nativo de Express para parsear JSON - DESPUÉS DE LAS RUTAS DE UPLOAD
 app.use(express.json()); // Para manejar solicitudes JSON
-app.use(express.urlencoded({ extended: true })); // Para manejar formularios URL-encoded
+
+// Middleware condicional para URL-encoded - solo para rutas que no usen Multer
+app.use((req, res, next) => {
+  // Si la ruta usa Multer (listings), no procesar URL-encoded aquí
+  if (req.path.includes('/listings/create') || req.path.includes('/listings/') && req.method === 'POST' && req.path.includes('/edit')) {
+    return next();
+  }
+  // Para otras rutas, procesar URL-encoded normalmente
+  express.urlencoded({ extended: true })(req, res, next);
+});
 // Permite usar ?_method=PUT o ?_method=DELETE en formularios
 app.use(methodOverride("_method"));
 app.use(
@@ -223,6 +242,13 @@ app.use("/admin", adminRouter);
 
 // SEO Routes
 app.use("/", sitemapRouter);
+
+// Health Check Routes
+app.use("/", healthRouter);
+
+// Rutas de upload eliminadas
+
+// Middleware de body parsing ya está configurado antes de las rutas
 
 //app.use("/artemis/blog/categories",adminCategoriesRouter)
 

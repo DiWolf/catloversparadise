@@ -187,6 +187,123 @@
         </div>
     </div>
 
+    <!-- Gatos Disponibles para Compra -->
+    {% if availableCats and availableCats.length > 0 %}
+    <div class="section bg-light">
+        <div class="r-container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="fw-bold text-primary mb-3">
+                        <i class="fa-solid fa-paw me-2"></i>
+                        {{ t('breeds.availableCats.title', { breed: cat.name }) }}
+                    </h2>
+                    <p class="text-muted fs-5">{{ t('breeds.availableCats.description', { breed: cat.name }) }}</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for listing in availableCats %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden cat-listing-card">
+                        <div class="position-relative">
+                            {% if listing.images and listing.images.length > 0 %}
+                            <img src="{{ listing.images[0] }}" class="card-img-top" alt="{{ listing.name }}" 
+                                 style="height: 250px; object-fit: cover;" 
+                                 onerror="this.src='/public/portal/image/dummy-img-600x400.jpg'">
+                            {% else %}
+                            <img src="/public/portal/image/dummy-img-600x400.jpg" class="card-img-top" alt="{{ listing.name }}" 
+                                 style="height: 250px; object-fit: cover;">
+                            {% endif %}
+                            
+                            <!-- Badge de estado -->
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-success px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-check me-1"></i>{{ t('catalog.status.available') }}
+                                </span>
+                            </div>
+                            
+                            <!-- Badge de género -->
+                            <div class="position-absolute top-0 end-0 m-3">
+                                {% if listing.gender === 'male' %}
+                                <span class="badge bg-primary px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-mars me-1"></i>{{ t('catalog.gender.male') }}
+                                </span>
+                                {% else %}
+                                <span class="badge bg-pink px-3 py-2 rounded-pill">
+                                    <i class="fa-solid fa-venus me-1"></i>{{ t('catalog.gender.female') }}
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ listing.name }}</h5>
+                            
+                            <!-- Información básica -->
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted d-block">{{ t('catalog.age') }}</small>
+                                    <strong>{{ listing.age_months }} {{ t('catalog.months') }}</strong>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block">{{ t('catalog.color') }}</small>
+                                    <strong>{{ listing.color or t('catalog.notSpecified') }}</strong>
+                                </div>
+                            </div>
+                            
+                            {% if listing.special_characteristics %}
+                            <p class="card-text text-muted mb-3">
+                                <small>{{ listing.special_characteristics }}</small>
+                            </p>
+                            {% endif %}
+                            
+                            <!-- Precios -->
+                            {% if listing.pet_price or listing.breeding_price %}
+                            <div class="mb-3">
+                                {% if listing.pet_price %}
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small class="text-muted">{{ t('catalog.petPrice') }}</small>
+                                    <strong class="text-success">${{ listing.pet_price }}</strong>
+                                </div>
+                                {% endif %}
+                                {% if listing.breeding_price %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">{{ t('catalog.breedingPrice') }}</small>
+                                    <strong class="text-info">${{ listing.breeding_price }}</strong>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                            
+                            <!-- Botones de acción -->
+                            <div class="d-flex gap-2">
+                                <a href="/catalog/{{ listing.id }}" class="btn btn-outline-primary btn-sm flex-fill">
+                                    <i class="fa-solid fa-eye me-1"></i>{{ t('catalog.viewDetails') }}
+                                </a>
+                                {% if listing.whatsapp_message %}
+                                <a href="{{ listing.whatsapp_message }}" target="_blank" class="btn btn-success btn-sm">
+                                    <i class="fa-brands fa-whatsapp me-1"></i>WhatsApp
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Botón para ver más -->
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <a href="/catalog" class="btn btn-primary btn-lg px-5">
+                        <i class="fa-solid fa-list me-2"></i>{{ t('catalog.viewAllCats') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
 {% endblock %}
 
 {% block extra_css %}
@@ -365,6 +482,30 @@ html {
 
 .badge:hover {
     transform: scale(1.05);
+}
+
+/* Estilos para las tarjetas de gatos disponibles */
+.cat-listing-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.cat-listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--primary-color);
+}
+
+.cat-listing-card .card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.cat-listing-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.bg-pink {
+    background-color: #e91e63 !important;
 }
 </style>
 

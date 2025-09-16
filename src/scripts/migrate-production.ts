@@ -35,15 +35,18 @@ async function runProductionMigration() {
         // Leer archivos de migración desde la carpeta de migraciones compilada
         const migration1Path = path.join(__dirname, '..', 'migrations', '001_create_tables.sql');
         const migration2Path = path.join(__dirname, '..', 'migrations', '002_cats_data.sql');
+        const migration3Path = path.join(__dirname, '..', 'migrations', '003_create_cat_listings.sql');
         
         console.log('📁 Leyendo archivos de migración...');
         console.log('📁 Ruta migración 1:', migration1Path);
         console.log('📁 Ruta migración 2:', migration2Path);
+        console.log('📁 Ruta migración 3:', migration3Path);
         
         const migration1SQL = fs.readFileSync(migration1Path, 'utf8');
         const migration2SQL = fs.readFileSync(migration2Path, 'utf8');
+        const migration3SQL = fs.readFileSync(migration3Path, 'utf8');
         
-        const migrationSQL = migration1SQL + '\n\n' + migration2SQL;
+        const migrationSQL = migration1SQL + '\n\n' + migration2SQL + '\n\n' + migration3SQL;
         
         // Dividir en statements individuales - método más simple
         const statements = migrationSQL

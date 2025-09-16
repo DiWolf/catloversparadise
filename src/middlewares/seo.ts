@@ -65,3 +65,4 @@ export function generateMetaTags(seo: SEOConfig): string {
     return metaTags;
 }
 
+

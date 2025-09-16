@@ -1,0 +1,245 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}{{ t('catalog.title') }} - Cat Lovers Paradise{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="section position-relative" style="background-image: url(/public/portal/image/breeds/exotic-hero.jpg); min-height: 50vh;">
+        <div class="image-overlay"></div>
+        <div class="r-container section position-relative" style="z-index: 2;">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="text-white fw-bold display-4 mb-4">🐱 {{ t('catalog.hero.title') }}</h1>
+                    <p class="text-white fs-5 mb-0">{{ t('catalog.hero.description') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtros Section -->
+    <div class="section bg-light-color">
+        <div class="r-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="card-header bg-accent-color text-white">
+                            <h5 class="mb-0">{{ t('catalog.filters.title') }}</h5>
+                        </div>
+                        <div class="card-body p-4">
+                    <form method="GET" class="row g-3">
+                        <div class="col-md-3">
+                            <label for="breed" class="form-label">{{ t('catalog.filters.breed') }}</label>
+                            <select class="form-select" id="breed" name="breed">
+                                <option value="">{{ t('catalog.filters.allBreeds') }}</option>
+                                {% for breed in breeds %}
+                                <option value="{{ breed.slug }}" {% if filters.breed == breed.slug %}selected{% endif %}>
+                                    {{ breed.breed }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="gender" class="form-label">{{ t('catalog.filters.gender') }}</label>
+                            <select class="form-select" id="gender" name="gender">
+                                <option value="">{{ t('catalog.filters.allGenders') }}</option>
+                                <option value="male" {% if filters.gender == 'male' %}selected{% endif %}>{{ t('catalog.gender.male') }}</option>
+                                <option value="female" {% if filters.gender == 'female' %}selected{% endif %}>{{ t('catalog.gender.female') }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="age_range" class="form-label">{{ t('catalog.filters.ageRange') }}</label>
+                            <select class="form-select" id="age_range" name="age_range">
+                                <option value="">{{ t('catalog.filters.anyAge') }}</option>
+                                <option value="1-3" {% if filters.age_range == '1-3' %}selected{% endif %}>{{ t('catalog.filters.ageRange.1-3') }}</option>
+                                <option value="3-6" {% if filters.age_range == '3-6' %}selected{% endif %}>{{ t('catalog.filters.ageRange.3-6') }}</option>
+                                <option value="6-12" {% if filters.age_range == '6-12' %}selected{% endif %}>{{ t('catalog.filters.ageRange.6-12') }}</option>
+                                <option value="12+" {% if filters.age_range == '12+' %}selected{% endif %}>{{ t('catalog.filters.ageRange.12+') }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="max_price" class="form-label">{{ t('catalog.filters.maxPrice') }}</label>
+                            <select class="form-select" id="max_price" name="max_price">
+                                <option value="">{{ t('catalog.filters.noLimit') }}</option>
+                                <option value="1000" {% if filters.max_price == 1000 %}selected{% endif %}>$1,000</option>
+                                <option value="2000" {% if filters.max_price == 2000 %}selected{% endif %}>$2,000</option>
+                                <option value="3000" {% if filters.max_price == 3000 %}selected{% endif %}>$3,000</option>
+                                <option value="5000" {% if filters.max_price == 5000 %}selected{% endif %}>$5,000</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="search" class="form-label">{{ t('catalog.filters.search') }}</label>
+                            <input type="text" class="form-control" id="search" name="search" 
+                                   placeholder="{{ t('catalog.filters.searchPlaceholder') }}" value="{{ filters.search or '' }}">
+                        </div>
+                        <div class="col-md-1 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de gatos -->
+    {% if listings.length > 0 %}
+    <div class="section">
+        <div class="r-container">
+            <div class="row g-4">
+                {% for listing in listings %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden listing-card">
+                {% if listing.images and listing.images.length > 0 %}
+                <div class="position-relative">
+                    <img src="{{ listing.images[0] }}" class="card-img-top" alt="{{ listing.name }}" 
+                         style="height: 250px; object-fit: cover;">
+                    <!-- Badge de estado -->
+                    <div class="position-absolute top-0 start-0 m-3">
+                        {% if listing.status == 'available' %}
+                        <span class="badge bg-success px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-check me-1"></i>{{ t('catalog.status.available') }}
+                        </span>
+                        {% elif listing.status == 'reserved' %}
+                        <span class="badge bg-warning px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-clock me-1"></i>{{ t('catalog.status.reserved') }}
+                        </span>
+                        {% else %}
+                        <span class="badge bg-info px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-check me-1"></i>{{ t('catalog.status.sold') }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Badge de género -->
+                    <div class="position-absolute top-0 end-0 m-3">
+                        {% if listing.gender == 'male' %}
+                        <span class="badge bg-primary px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-mars me-1"></i>{{ t('catalog.gender.male') }}
+                        </span>
+                        {% else %}
+                        <span class="badge bg-pink px-3 py-2 rounded-pill">
+                            <i class="fa-solid fa-venus me-1"></i>{{ t('catalog.gender.female') }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                     style="height: 250px;">
+                    <i class="fas fa-cat fa-4x text-muted"></i>
+                </div>
+                {% endif %}
+                
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold mb-3">{{ listing.name }}</h5>
+                            
+                            <!-- Información básica -->
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted d-block">{{ t('catalog.info.breed') }}</small>
+                                    <strong>{{ listing.cat.breed }}</strong>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block">{{ t('catalog.info.age') }}</small>
+                                    <strong>{{ listing.age_months }} {{ t('catalog.info.months') }}</strong>
+                                </div>
+                            </div>
+                    
+                    {% if listing.color or listing.eye_color %}
+                    <div class="mb-3">
+                        {% if listing.color %}
+                        <span class="badge bg-light text-dark me-1">{{ listing.color }}</span>
+                        {% endif %}
+                        {% if listing.eye_color %}
+                        <span class="badge bg-light text-dark">{{ listing.eye_color }} ojos</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if listing.special_characteristics %}
+                    <p class="card-text small text-muted mb-3">
+                        <i class="fas fa-star"></i> {{ listing.special_characteristics }}
+                    </p>
+                    {% endif %}
+                    
+                            <!-- Precios -->
+                            {% if listing.pet_price or listing.breeding_price %}
+                            <div class="mb-3">
+                                {% if listing.pet_price %}
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small class="text-muted">{{ t('catalog.prices.pet') }}</small>
+                                    <strong class="text-success">${{ listing.pet_price }}</strong>
+                                </div>
+                                {% endif %}
+                                {% if listing.breeding_price %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">{{ t('catalog.prices.breeding') }}</small>
+                                    <strong class="text-info">${{ listing.breeding_price }}</strong>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+
+                            <!-- Botones de acción -->
+                            <div class="d-flex gap-2">
+                                <a href="/catalog/{{ listing.id }}" class="btn btn-outline-primary btn-sm flex-fill">
+                                    <i class="fa-solid fa-eye me-1"></i>{{ t('catalog.actions.viewDetails') }}
+                                </a>
+                                {% if listing.status == 'available' %}
+                                <a href="{{ listing.whatsappUrl }}" target="_blank" class="btn btn-success btn-sm">
+                                    <i class="fa-brands fa-whatsapp me-1"></i>{{ t('catalog.actions.whatsapp') }}
+                                </a>
+                                {% endif %}
+                            </div>
+                </div>
+            </div>
+        </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="section">
+        <div class="r-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <i class="fas fa-cat fa-5x text-muted mb-4"></i>
+                        <h3 class="text-muted">{{ t('catalog.noResults.title') }}</h3>
+                        <p class="text-muted">{{ t('catalog.noResults.description') }}</p>
+                        <a href="/catalog" class="btn btn-primary">{{ t('catalog.noResults.viewAll') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.listing-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.listing-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.bg-pink {
+    background-color: #e91e63 !important;
+}
+</style>
+{% endblock %}

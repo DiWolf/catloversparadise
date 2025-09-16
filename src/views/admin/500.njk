@@ -1,9 +1,7 @@
-{% extends "template/portal.njk" %}
-
-{% block title %}Error del servidor - Cat Lovers Paradise{% endblock %}
+{% extends "admin/layout.njk" %}
 
 {% block content %}
-<div class="container-fluid py-5">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
             <div class="error-template">
@@ -13,11 +11,11 @@
                     Lo sentimos, ha ocurrido un error interno. Nuestro equipo técnico ha sido notificado.
                 </p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <a href="/" class="btn btn-primary btn-lg">
-                        <i class="fas fa-home"></i> Ir al Inicio
+                    <a href="/admin" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home"></i> Ir al Dashboard
                     </a>
-                    <a href="/contact" class="btn btn-outline-primary btn-lg">
-                        <i class="fas fa-envelope"></i> Contactar Soporte
+                    <a href="javascript:history.back()" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-arrow-left"></i> Volver Atrás
                     </a>
                 </div>
             </div>

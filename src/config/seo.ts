@@ -143,3 +143,4 @@ export function getSEOConfig(page: string, customData?: Partial<SEOConfig>): SEO
     };
 }
 
+

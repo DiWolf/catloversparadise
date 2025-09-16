@@ -1,0 +1,430 @@
+{% extends "admin/layout.njk" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0">Editar Gato del Catálogo</h1>
+                <a href="/admin/listings" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Información del Gato</h6>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/admin/listings/{{ listing.id }}/edit" enctype="multipart/form-data">
+                        <!-- Información Básica -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Información Básica</h5>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cat_id" class="form-label">Raza *</label>
+                                <select class="form-control" id="cat_id" name="cat_id" required>
+                                    <option value="">Seleccionar raza</option>
+                                    {% for cat in cats %}
+                                    <option value="{{ cat.id }}" {% if listing.cat_id == cat.id %}selected{% endif %}>
+                                        {{ cat.breed }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Nombre del Gato *</label>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       value="{{ listing.name }}" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="gender" class="form-label">Género *</label>
+                                <select class="form-control" id="gender" name="gender" required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="male" {% if listing.gender == 'male' %}selected{% endif %}>Macho</option>
+                                    <option value="female" {% if listing.gender == 'female' %}selected{% endif %}>Hembra</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="age_months" class="form-label">Edad (meses) *</label>
+                                <input type="number" class="form-control" id="age_months" name="age_months" 
+                                       min="1" max="120" value="{{ listing.age_months }}" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="status" class="form-label">Estado</label>
+                                <select class="form-control" id="status" name="status">
+                                    <option value="available" {% if listing.status == 'available' %}selected{% endif %}>Disponible</option>
+                                    <option value="reserved" {% if listing.status == 'reserved' %}selected{% endif %}>Reservado</option>
+                                    <option value="sold" {% if listing.status == 'sold' %}selected{% endif %}>Vendido</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Características Físicas -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Características Físicas</h5>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="color" class="form-label">Color</label>
+                                <input type="text" class="form-control" id="color" name="color" 
+                                       value="{{ listing.color or '' }}" placeholder="Ej: Blanco, Negro, Gris">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="eye_color" class="form-label">Color de Ojos</label>
+                                <input type="text" class="form-control" id="eye_color" name="eye_color" 
+                                       value="{{ listing.eye_color or '' }}" placeholder="Ej: Azul, Verde, Amarillo">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="special_characteristics" class="form-label">Características Especiales</label>
+                                <textarea class="form-control" id="special_characteristics" name="special_characteristics" 
+                                          rows="3" placeholder="Ej: Extremely face, wrinkles, patrón único...">{{ listing.special_characteristics or '' }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Precios -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Precios</h5>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="pet_price" class="form-label">Precio como Mascota ($)</label>
+                                <input type="number" class="form-control" id="pet_price" name="pet_price" 
+                                       min="0" step="0.01" value="{{ listing.pet_price or '' }}" placeholder="2000">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="breeding_price" class="form-label">Precio para Cría ($)</label>
+                                <input type="number" class="form-control" id="breeding_price" name="breeding_price" 
+                                       min="0" step="0.01" value="{{ listing.breeding_price or '' }}" placeholder="3500">
+                            </div>
+                        </div>
+
+                        <!-- Imágenes -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Imágenes</h5>
+                            </div>
+                            
+                            <!-- Upload de archivos -->
+                            <div class="col-12 mb-3">
+                                <label for="imageFiles" class="form-label">Subir Nuevas Imágenes</label>
+                                <input type="file" class="form-control" id="imageFiles" name="images" 
+                                       multiple accept="image/*" onchange="previewImages(this)">
+                                <small class="form-text text-muted">Puedes subir hasta 5 imágenes (JPEG, PNG, GIF, WEBP). Máximo 5MB por imagen.</small>
+                            </div>
+                            
+                            <!-- Vista previa de nuevas imágenes -->
+                            <div class="col-12 mb-3">
+                                <div id="imagePreview" class="row"></div>
+                            </div>
+                            
+                            <!-- Imágenes actuales -->
+                            {% if listing.images and listing.images.length > 0 %}
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Imágenes Actuales</label>
+                                <div class="row">
+                                    {% for image in listing.images %}
+                                    <div class="col-md-3 mb-2">
+                                        <div class="position-relative">
+                                            <img src="{{ image }}" alt="{{ listing.name }}" 
+                                                 class="img-thumbnail" style="width: 100%; height: 150px; object-fit: cover;">
+                                            <button type="button" class="btn btn-danger btn-sm position-absolute" 
+                                                    style="top: 5px; right: 5px;"
+                                                    onclick="removeCurrentImage('{{ image }}', this)">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <small class="form-text text-muted">Haz clic en la X para eliminar una imagen. Puedes agregar más imágenes abajo.</small>
+                            </div>
+                            {% endif %}
+                            
+                            <!-- URLs adicionales -->
+                            <div class="col-12 mb-3">
+                                <label for="imageUrls" class="form-label">URLs Adicionales (opcional)</label>
+                                <textarea class="form-control" id="imageUrls" name="imageUrls" rows="2" 
+                                          placeholder="https://ejemplo.com/imagen1.jpg, https://ejemplo.com/imagen2.jpg"></textarea>
+                                <small class="form-text text-muted">Puedes agregar URLs de imágenes externas separadas por comas.</small>
+                            </div>
+                            
+                            <!-- Campo oculto para imágenes a eliminar -->
+                            <input type="hidden" id="imagesToRemove" name="imagesToRemove" value="">
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Descripción</h5>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="description" class="form-label">Descripción del Gato</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" 
+                                          placeholder="Describe las características, personalidad, cuidados especiales...">{{ listing.description or '' }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje de WhatsApp -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Mensaje de WhatsApp</h5>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="whatsapp_message" class="form-label">Mensaje Personalizado</label>
+                                <textarea class="form-control" id="whatsapp_message" name="whatsapp_message" rows="3" 
+                                          placeholder="Mensaje que aparecerá cuando alguien contacte por WhatsApp...">{{ listing.whatsapp_message or '' }}</textarea>
+                                <small class="form-text text-muted">Si no se especifica, se generará automáticamente.</small>
+                            </div>
+                        </div>
+
+                        <!-- Traducciones -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h5 class="text-primary mb-3">Traducciones</h5>
+                                <p class="text-muted">Información en español e inglés</p>
+                            </div>
+                            
+                            <!-- Español -->
+                            <div class="col-md-6 mb-3">
+                                <h6 class="text-success">Español</h6>
+                                {% set spTranslation = listing.translations | selectattr('language', 'equalto', 'sp') | first %}
+                                <div class="mb-3">
+                                    <label for="name_sp" class="form-label">Nombre en Español</label>
+                                    <input type="text" class="form-control" id="name_sp" name="name_sp" 
+                                           value="{% if spTranslation %}{{ spTranslation.name }}{% endif %}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description_sp" class="form-label">Descripción en Español</label>
+                                    <textarea class="form-control" id="description_sp" name="description_sp" rows="3">{% if spTranslation %}{{ spTranslation.description }}{% endif %}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="special_characteristics_sp" class="form-label">Características en Español</label>
+                                    <textarea class="form-control" id="special_characteristics_sp" name="special_characteristics_sp" rows="2">{% if spTranslation %}{{ spTranslation.special_characteristics }}{% endif %}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="whatsapp_message_sp" class="form-label">Mensaje WhatsApp en Español</label>
+                                    <textarea class="form-control" id="whatsapp_message_sp" name="whatsapp_message_sp" rows="2">{% if spTranslation %}{{ spTranslation.whatsapp_message }}{% endif %}</textarea>
+                                </div>
+                            </div>
+
+                            <!-- Inglés -->
+                            <div class="col-md-6 mb-3">
+                                <h6 class="text-info">Inglés</h6>
+                                {% set engTranslation = listing.translations | selectattr('language', 'equalto', 'eng') | first %}
+                                <div class="mb-3">
+                                    <label for="name_eng" class="form-label">Nombre en Inglés</label>
+                                    <input type="text" class="form-control" id="name_eng" name="name_eng" 
+                                           value="{% if engTranslation %}{{ engTranslation.name }}{% endif %}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description_eng" class="form-label">Descripción en Inglés</label>
+                                    <textarea class="form-control" id="description_eng" name="description_eng" rows="3">{% if engTranslation %}{{ engTranslation.description }}{% endif %}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="special_characteristics_eng" class="form-label">Características en Inglés</label>
+                                    <textarea class="form-control" id="special_characteristics_eng" name="special_characteristics_eng" rows="2">{% if engTranslation %}{{ engTranslation.special_characteristics }}{% endif %}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="whatsapp_message_eng" class="form-label">Mensaje WhatsApp en Inglés</label>
+                                    <textarea class="form-control" id="whatsapp_message_eng" name="whatsapp_message_eng" rows="2">{% if engTranslation %}{{ engTranslation.whatsapp_message }}{% endif %}</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Actualizar Gato
+                                </button>
+                                <a href="/admin/listings" class="btn btn-secondary ml-2">
+                                    <i class="fas fa-times"></i> Cancelar
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Información del Gato</h6>
+                </div>
+                <div class="card-body">
+                    {% if listing.images and listing.images.length > 0 %}
+                    <div class="text-center mb-3">
+                        <img src="{{ listing.images[0] }}" alt="{{ listing.name }}" 
+                             class="img-fluid rounded" style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+                    
+                    <h6 class="text-primary">Detalles Actuales</h6>
+                    <ul class="list-unstyled">
+                        <li><strong>Nombre:</strong> {{ listing.name }}</li>
+                        <li><strong>Raza:</strong> {{ listing.cat.breed }}</li>
+                        <li><strong>Género:</strong> 
+                            {% if listing.gender === 'male' %}Macho{% else %}Hembra{% endif %}
+                        </li>
+                        <li><strong>Edad:</strong> {{ listing.age_months }} meses</li>
+                        {% if listing.color %}
+                        <li><strong>Color:</strong> {{ listing.color }}</li>
+                        {% endif %}
+                        {% if listing.eye_color %}
+                        <li><strong>Ojos:</strong> {{ listing.eye_color }}</li>
+                        {% endif %}
+                        <li><strong>Estado:</strong> 
+                            {% if listing.status === 'available' %}
+                            <span class="badge badge-success">Disponible</span>
+                            {% elif listing.status === 'reserved' %}
+                            <span class="badge badge-warning">Reservado</span>
+                            {% else %}
+                            <span class="badge badge-info">Vendido</span>
+                            {% endif %}
+                        </li>
+                    </ul>
+
+                    {% if listing.pet_price or listing.breeding_price %}
+                    <h6 class="text-primary mt-3">Precios</h6>
+                    <ul class="list-unstyled">
+                        {% if listing.pet_price %}
+                        <li><strong>Mascota:</strong> ${{ listing.pet_price }}</li>
+                        {% endif %}
+                        {% if listing.breeding_price %}
+                        <li><strong>Cría:</strong> ${{ listing.breeding_price }}</li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+
+                    <h6 class="text-primary mt-3">Fechas</h6>
+                    <ul class="list-unstyled">
+                        <li><strong>Creado:</strong> {{ listing.created_at | date('DD/MM/YYYY') }}</li>
+                        <li><strong>Actualizado:</strong> {{ listing.updated_at | date('DD/MM/YYYY') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function previewImages(input) {
+    const preview = document.getElementById('imagePreview');
+    preview.innerHTML = '';
+    
+    if (input.files && input.files.length > 0) {
+        // Validar número de archivos
+        if (input.files.length > 5) {
+            alert('Solo puedes subir máximo 5 imágenes');
+            input.value = '';
+            return;
+        }
+        
+        // Validar tamaño de archivos
+        for (let i = 0; i < input.files.length; i++) {
+            if (input.files[i].size > 5 * 1024 * 1024) { // 5MB
+                alert(`La imagen ${input.files[i].name} es demasiado grande. Máximo 5MB por imagen.`);
+                input.value = '';
+                preview.innerHTML = '';
+                return;
+            }
+        }
+        
+        // Mostrar vista previa
+        Array.from(input.files).forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const col = document.createElement('div');
+                col.className = 'col-md-3 mb-2';
+                col.innerHTML = `
+                    <div class="position-relative">
+                        <img src="${e.target.result}" class="img-thumbnail" style="width: 100%; height: 150px; object-fit: cover;">
+                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" 
+                                onclick="removeNewImage(this, ${index})" title="Eliminar">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                preview.appendChild(col);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+}
+
+function removeNewImage(button, index) {
+    const input = document.getElementById('imageFiles');
+    const dt = new DataTransfer();
+    
+    // Recrear la lista de archivos sin el archivo eliminado
+    Array.from(input.files).forEach((file, i) => {
+        if (i !== index) {
+            dt.items.add(file);
+        }
+    });
+    
+    input.files = dt.files;
+    previewImages(input);
+}
+
+// Función para eliminar imágenes actuales
+function removeCurrentImage(imagePath, button) {
+    if (confirm('¿Estás seguro de que quieres eliminar esta imagen?')) {
+        // Ocultar la imagen visualmente
+        const imageContainer = button.closest('.col-md-3');
+        imageContainer.style.display = 'none';
+        
+        // Agregar a la lista de imágenes a eliminar
+        const imagesToRemoveInput = document.getElementById('imagesToRemove');
+        let imagesToRemove = imagesToRemoveInput.value ? imagesToRemoveInput.value.split(',') : [];
+        imagesToRemove.push(imagePath);
+        imagesToRemoveInput.value = imagesToRemove.join(',');
+        
+        console.log('Imagen marcada para eliminar:', imagePath);
+        console.log('Imágenes a eliminar:', imagesToRemoveInput.value);
+    }
+}
+
+// Validación simple del formulario
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[action*="/edit"]');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const imageFiles = document.getElementById('imageFiles').files;
+            
+            if (imageFiles.length > 5) {
+                alert('Solo puedes subir máximo 5 imágenes');
+                e.preventDefault();
+                return false;
+            }
+        });
+    }
+});
+</script>
+
+<style>
+#imagePreview .img-thumbnail, #currentImages .img-thumbnail {
+    border: 2px solid #dee2e6;
+    transition: border-color 0.3s ease;
+}
+
+#imagePreview .img-thumbnail:hover, #currentImages .img-thumbnail:hover {
+    border-color: #007bff;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.btn-danger.position-absolute {
+    z-index: 10;
+}
+</style>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { CatService } from '../services/CatService';
+import { CatListingService } from '../services/CatListingService';
 import { getSEOConfig } from '../config/seo';
 import { generateMetaTags } from '../middlewares/seo';
 import EmailService, { ContactFormData } from '../services/EmailService';
@@ -120,6 +121,9 @@ const portalController = {
                 care: translation?.care || cat.care
             };
             
+            // Obtener gatos disponibles de esta raza
+            const availableCats = await CatListingService.findByBreed(cat.id, currentLocale);
+            
             const seo = getSEOConfig(breed, {
                 title: `${displayCat.name} - Cat Lovers Paradise`,
                 description: displayCat.description,
@@ -133,7 +137,8 @@ const portalController = {
                     metaTags: generateMetaTags(seo)
                 },
                 breed: cat.slug,
-                cat: displayCat
+                cat: displayCat,
+                availableCats: availableCats
             });
         } catch (error) {
             console.error('Error loading breed info:', error);

@@ -35,3 +35,4 @@ Allow: /gallery
 Allow: /contact
 Allow: /breeds
 
+

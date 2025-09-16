@@ -1,0 +1,243 @@
+{% extends "template/portal.njk" %}
+
+{% block title %}{{ listing.name }} - {{ listing.cat.breed }} - Cat Lovers Paradise{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="section position-relative" style="background-image: url(/public/portal/image/breeds/exotic-hero.jpg); min-height: 50vh;">
+        <div class="image-overlay"></div>
+        <div class="r-container section position-relative" style="z-index: 2;">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="text-white fw-bold display-4 mb-4">{{ listing.name }}</h1>
+                    <p class="text-white fs-5 mb-0">{{ listing.cat.breed }} - {{ listing.age_months }} meses</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cat Details Section -->
+    <div class="section">
+        <div class="r-container">
+            <div class="row">
+                <!-- Galería de Imágenes -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="card-body p-0">
+                    {% if listing.images and listing.images.length > 0 %}
+                    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for image in listing.images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ image }}" class="d-block w-100" alt="{{ listing.name }}" 
+                                     style="height: 400px; object-fit: cover;">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if listing.images.length > 1 %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">{{ t('catalog.detail.previous') }}</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">{{ t('catalog.detail.next') }}</span>
+                        </button>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                        <i class="fas fa-cat fa-5x text-muted"></i>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+                <!-- Información del Gato -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="card-header bg-accent-color text-white">
+                            <h2 class="h4 mb-0">{{ listing.name }}</h2>
+                            <p class="mb-0">{{ listing.cat.breed }}</p>
+                        </div>
+                        <div class="card-body p-4">
+                    <!-- Estado -->
+                    <div class="mb-4">
+                        {% if listing.status == 'available' %}
+                        <span class="badge bg-success fs-6">✅ {{ t('catalog.detail.status.available') }}</span>
+                        {% elif listing.status == 'reserved' %}
+                        <span class="badge bg-warning fs-6">⏰ {{ t('catalog.detail.status.reserved') }}</span>
+                        {% else %}
+                        <span class="badge bg-info fs-6">✅ {{ t('catalog.detail.status.sold') }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Información Básica -->
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-{% if listing.gender == 'male' %}mars{% else %}venus{% endif %} text-primary me-2"></i>
+                                <strong>{{ t('catalog.detail.gender') }}:</strong>
+                            </div>
+                            <p class="ms-4">{% if listing.gender == 'male' %}{{ t('catalog.gender.male') }}{% else %}{{ t('catalog.gender.female') }}{% endif %}</p>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-calendar text-primary me-2"></i>
+                                <strong>{{ t('catalog.detail.age') }}:</strong>
+                            </div>
+                            <p class="ms-4">{{ listing.age_months }} {{ t('catalog.months') }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Características Físicas -->
+                    {% if listing.color or listing.eye_color %}
+                    <div class="mb-4">
+                        <h5 class="text-primary">{{ t('catalog.detail.physicalCharacteristics') }}</h5>
+                        <div class="row">
+                            {% if listing.color %}
+                            <div class="col-6">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-palette text-primary me-2"></i>
+                                    <strong>{{ t('catalog.detail.color') }}:</strong>
+                                </div>
+                                <p class="ms-4">{{ listing.color }}</p>
+                            </div>
+                            {% endif %}
+                            {% if listing.eye_color %}
+                            <div class="col-6">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-eye text-primary me-2"></i>
+                                    <strong>{{ t('catalog.detail.eyes') }}:</strong>
+                                </div>
+                                <p class="ms-4">{{ listing.eye_color }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Características Especiales -->
+                    {% if listing.special_characteristics %}
+                    <div class="mb-4">
+                        <h5 class="text-primary">{{ t('catalog.detail.specialCharacteristics') }}</h5>
+                        <p class="text-muted">
+                            <i class="fas fa-star text-warning"></i> {{ listing.special_characteristics }}
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Precios -->
+                    {% if listing.pet_price or listing.breeding_price %}
+                    <div class="mb-4">
+                        <h5 class="text-primary">{{ t('catalog.detail.prices') }}</h5>
+                        <div class="row">
+                            {% if listing.pet_price %}
+                            <div class="col-6">
+                                <div class="text-center p-3 border rounded">
+                                    <h6 class="text-muted">{{ t('catalog.detail.petPrice') }}</h6>
+                                    <h4 class="text-success mb-0">${{ listing.pet_price }}</h4>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if listing.breeding_price %}
+                            <div class="col-6">
+                                <div class="text-center p-3 border rounded">
+                                    <h6 class="text-muted">{{ t('catalog.detail.breedingPrice') }}</h6>
+                                    <h4 class="text-info mb-0">${{ listing.breeding_price }}</h4>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Descripción -->
+                    {% if listing.description %}
+                    <div class="mb-4">
+                        <h5 class="text-primary">{{ t('catalog.detail.description') }}</h5>
+                        <p class="text-muted">{{ listing.description }}</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Botones de Acción -->
+                    <div class="d-grid gap-2">
+                        {% if listing.status == 'available' %}
+                        <a href="{{ whatsappUrl }}" class="btn btn-success btn-lg" target="_blank">
+                            <i class="fab fa-whatsapp"></i> {{ t('catalog.detail.contactWhatsApp') }}
+                        </a>
+                        <a href="/catalog" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> {{ t('catalog.detail.viewMoreCats') }}
+                        </a>
+                        {% else %}
+                        <button class="btn btn-secondary btn-lg" disabled>
+                            {% if listing.status == 'reserved' %}
+                            <i class="fas fa-clock"></i> {{ t('catalog.detail.catReserved') }}
+                            {% else %}
+                            <i class="fas fa-check"></i> {{ t('catalog.detail.catSold') }}
+                            {% endif %}
+                        </button>
+                        <a href="/catalog" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> {{ t('catalog.detail.viewOtherCats') }}
+                        </a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información Adicional -->
+    <div class="section bg-light-color">
+        <div class="r-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="card-header bg-accent-color text-white">
+                            <h5 class="mb-0">{{ t('catalog.detail.additionalInfo') }}</h5>
+                        </div>
+                        <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{{ t('catalog.detail.aboutBreed') }}</h6>
+                            <p class="text-muted">
+                                {{ t('catalog.detail.aboutBreedDesc', { breed: listing.cat.breed }) }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">{{ t('catalog.detail.contact') }}</h6>
+                            <p class="text-muted">
+                                {{ t('catalog.detail.contactDesc') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.carousel-item img {
+    border-radius: 0.375rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,222 @@
+{% extends "admin/layout.njk" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0">Catálogo de Gatos</h1>
+                <a href="/admin/listings/create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Gato
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total Gatos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.totalListings }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-cat fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Disponibles</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.availableListings }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Reservados</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.reservedListings }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Vendidos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.soldListings }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gatos Recientes -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Gatos Recientes</h6>
+                    <a href="/admin/listings" class="btn btn-sm btn-primary">Ver Todos</a>
+                </div>
+                <div class="card-body">
+                    {% if recentListings.length > 0 %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Raza</th>
+                                    <th>Género</th>
+                                    <th>Edad</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for listing in recentListings %}
+                                <tr>
+                                    <td>{{ listing.name }}</td>
+                                    <td>{{ listing.cat.breed }}</td>
+                                    <td>
+                                        {% if listing.gender === 'male' %}
+                                        <span class="badge badge-primary">Macho</span>
+                                        {% else %}
+                                        <span class="badge badge-pink">Hembra</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ listing.age_months }} meses</td>
+                                    <td>
+                                        {% if listing.status === 'available' %}
+                                        <span class="badge badge-success">Disponible</span>
+                                        {% elif listing.status === 'reserved' %}
+                                        <span class="badge badge-warning">Reservado</span>
+                                        {% else %}
+                                        <span class="badge badge-info">Vendido</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="/admin/listings/{{ listing.id }}/edit" class="btn btn-sm btn-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                    onclick="confirmDelete({{ listing.id }}, '{{ listing.name }}')" 
+                                                    title="Eliminar">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-cat fa-3x text-gray-300 mb-3"></i>
+                        <p class="text-gray-500">No hay gatos en el catálogo aún</p>
+                        <a href="/admin/listings/create" class="btn btn-primary">Agregar Primer Gato</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Razas Disponibles</h6>
+                    <a href="/admin/cats" class="btn btn-sm btn-primary">Gestionar</a>
+                </div>
+                <div class="card-body">
+                    {% if recentCats.length > 0 %}
+                    <div class="list-group list-group-flush">
+                        {% for cat in recentCats %}
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ cat.breed }}
+                            <span class="badge badge-primary badge-pill">{{ cat.name }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-paw fa-2x text-gray-300 mb-3"></i>
+                        <p class="text-gray-500">No hay razas registradas</p>
+                        <a href="/admin/cats/create" class="btn btn-primary">Agregar Raza</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres eliminar el gato <strong id="catName"></strong> del catálogo?</p>
+                <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form id="deleteForm" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete(id, name) {
+    document.getElementById('catName').textContent = name;
+    document.getElementById('deleteForm').action = '/admin/listings/' + id + '/delete';
+    
+    // Usar Bootstrap 5 nativo (sin jQuery)
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+}
+</script>
+{% endblock %}
