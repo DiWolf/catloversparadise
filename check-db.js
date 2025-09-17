@@ -14,6 +14,14 @@ async function checkTables() {
     const roles = await query('SELECT * FROM roles');
     console.log('Roles en la tabla:', roles);
     
+    console.log('\nVerificando gatos...');
+    const cats = await query('SELECT id, name, breed, slug, is_active FROM cats ORDER BY id');
+    console.log('Gatos en la tabla:', cats);
+    
+    console.log('\nVerificando British Shorthair específicamente...');
+    const britishShorthair = await query('SELECT * FROM cats WHERE breed = "british-shorthair"');
+    console.log('British Shorthair:', britishShorthair);
+    
   } catch (error) {
     console.error('Error:', error.message);
   }
