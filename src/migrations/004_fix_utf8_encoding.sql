@@ -1,8 +1,7 @@
 -- Migración 004: Corregir codificación UTF-8 para caracteres chinos
 -- Ejecutar: npm run fix-utf8
 
--- Configurar la base de datos para UTF-8
-ALTER DATABASE catloversparadise CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 
 -- Configurar tablas existentes para UTF-8
 ALTER TABLE cats CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
