@@ -35,13 +35,19 @@ async function runMigration() {
         // Leer archivos de migración
         const migration1Path = path.join(process.cwd(), 'src', 'migrations', '001_create_tables.sql');
         const migration2Path = path.join(process.cwd(), 'src', 'migrations', '002_cats_data.sql');
+        const migration3Path = path.join(process.cwd(), 'src', 'migrations', '003_create_cat_listings.sql');
+        const migration4Path = path.join(process.cwd(), 'src', 'migrations', '004_fix_utf8_encoding.sql');
+        const migration5Path = path.join(process.cwd(), 'src', 'migrations', '005_add_british_shorthair.sql');
         
         console.log('📁 Leyendo archivos de migración...');
         
         const migration1SQL = fs.readFileSync(migration1Path, 'utf8');
         const migration2SQL = fs.readFileSync(migration2Path, 'utf8');
+        const migration3SQL = fs.readFileSync(migration3Path, 'utf8');
+        const migration4SQL = fs.readFileSync(migration4Path, 'utf8');
+        const migration5SQL = fs.readFileSync(migration5Path, 'utf8');
         
-        const migrationSQL = migration1SQL + '\n\n' + migration2SQL;
+        const migrationSQL = migration1SQL + '\n\n' + migration2SQL + '\n\n' + migration3SQL + '\n\n' + migration4SQL + '\n\n' + migration5SQL;
         
         // Dividir en statements individuales - método más simple
         const statements = migrationSQL
