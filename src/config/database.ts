@@ -13,9 +13,27 @@ const dbConfig = {
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  reconnect: true,
+  // Configuración UTF-8 para caracteres chinos
+  charset: 'utf8mb4',
+  collation: 'utf8mb4_unicode_ci',
+  // Configuración adicional para MySQL
+  supportBigNumbers: true,
+  bigNumberStrings: true,
+  dateStrings: false,
+  debug: false,
+  trace: false,
+  // Configuración de timeouts
+  connectTimeout: 60000,
   acquireTimeout: 60000,
   timeout: 60000,
-  reconnect: true
+  // Configuración de charset específica
+  typeCast: function (field: any, next: any) {
+    if (field.type === 'VAR_STRING' || field.type === 'STRING' || field.type === 'TEXT') {
+      return field.string();
+    }
+    return next();
+  }
 };
 
 // Crear pool de conexiones

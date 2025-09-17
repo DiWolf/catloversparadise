@@ -16,7 +16,8 @@
     "migrate": "ts-node src/scripts/migrate.ts",
     "init-db": "ts-node src/scripts/init-db.ts",
     "migrate-prod": "ts-node src/scripts/migrate-production.ts",
-    "migrate-prod-compiled": "node dist/scripts/migrate-production.js"
+    "migrate-prod-compiled": "node dist/scripts/migrate-production.js",
+    "fix-utf8": "ts-node src/scripts/fix-utf8-encoding.ts"
   },
   "keywords": [],
   "author": "",

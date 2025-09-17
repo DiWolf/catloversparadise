@@ -62,7 +62,16 @@
                         </div>
                         <div class="flex-grow-1 d-flex flex-column justify-content-center">
                             <h5 class="mb-3 fw-semibold">{{ t('contact.phone') }}</h5>
-                            <p class="mb-0 text-muted small">{{ t('contact.phoneNumber') }}</p>
+                            <div class="contact-phone-section">
+                                <div class="mb-2">
+                                    <p class="contact-phone-country">{{ t('contact.country.spain') }}</p>
+                                    <p class="contact-phone-number">{{ t('contact.phoneNumber') }}</p>
+                                </div>
+                                <div>
+                                    <p class="contact-phone-country">{{ t('contact.country.mexico') }}</p>
+                                    <p class="contact-phone-number">{{ t('contact.phoneNumber2') }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -229,6 +238,24 @@
 .contact-address {
     line-height: 1.6;
     font-size: 0.9rem;
+}
+
+/* Phone numbers formatting */
+.contact-phone-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contact-phone-country {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    margin-bottom: 0.25rem;
+}
+
+.contact-phone-number {
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 </style>
 {% endblock %}
