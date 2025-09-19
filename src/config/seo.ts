@@ -13,8 +13,8 @@ export interface SEOConfig {
 }
 
 export const defaultSEO: SEOConfig = {
-    title: 'Cat Lovers Paradise - Criadores de Gatos de Raza en México',
-    description: 'Criadores profesionales de gatos de raza en México. Especialistas en Sphynx, Maine Coon, Bengal, Exótico y más. Gatitos con pedigree, salud garantizada y amor incondicional.',
+    title: 'Cat Lovers Paradise - Criadores de Gatos de Raza',
+    description: 'Criadores profesionales de gatos de raza. Especialistas en Sphynx, Maine Coon, Bengal, Exótico y más. Gatitos con pedigree, salud garantizada y amor incondicional.',
     keywords: [
         'criadores gatos',
         'gatos de raza',
@@ -30,7 +30,7 @@ export const defaultSEO: SEOConfig = {
         'criadores profesionales'
     ],
     ogTitle: 'Cat Lovers Paradise - Criadores de Gatos de Raza',
-    ogDescription: 'Criadores profesionales de gatos de raza en México. Gatitos con pedigree y salud garantizada.',
+    ogDescription: 'Criadores profesionales de gatos de raza. Gatitos con pedigree y salud garantizada.',
     ogImage: '/public/portal/image/gatosinicio.png',
     twitterCard: 'summary_large_image',
     twitterImage: '/public/portal/image/gatosinicio.png',
@@ -40,13 +40,13 @@ export const defaultSEO: SEOConfig = {
 export const pageSEO: Record<string, SEOConfig> = {
     home: {
         ...defaultSEO,
-        title: 'Cat Lovers Paradise - Criadores de Gatos de Raza en México',
-        description: 'Criadores profesionales de gatos de raza en México. Especialistas en Sphynx, Maine Coon, Bengal, Exótico y más. Gatitos con pedigree, salud garantizada y amor incondicional.',
+        title: 'Cat Lovers Paradise - Criadores de Gatos de Raza  ',
+        description: 'Criadores profesionales de gatos de raza . Especialistas en Sphynx, Maine Coon, Bengal, Exótico y más. Gatitos con pedigree, salud garantizada y amor incondicional.',
         structuredData: {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Cat Lovers Paradise",
-            "description": "Criadores profesionales de gatos de raza en México",
+            "description": "Criadores profesionales de gatos de raza",
             "url": "https://catloversparadise.com",
             "logo": "https://catloversparadise.com/public/portal/image/logo.png",
             "contactPoint": {
@@ -105,7 +105,7 @@ export const pageSEO: Record<string, SEOConfig> = {
     sphynx: {
         ...defaultSEO,
         title: 'Gatos Sphynx - Cat Lovers Paradise | Criadores Especializados',
-        description: 'Gatos Sphynx de raza pura en México. Características únicas, cuidados especiales y personalidad encantadora. Gatitos con pedigree garantizado.',
+        description: 'Gatos Sphynx de raza pura. Características únicas, cuidados especiales y personalidad encantadora. Gatitos con pedigree garantizado.',
         keywords: [...defaultSEO.keywords, 'sphynx', 'gato sin pelo', 'gato desnudo', 'características sphynx'],
         canonical: 'https://catloversparadise.com/breeds/sphynx'
     },
@@ -113,7 +113,7 @@ export const pageSEO: Record<string, SEOConfig> = {
     mainecoon: {
         ...defaultSEO,
         title: 'Gatos Maine Coon - Cat Lovers Paradise | Gigantes Gentiles',
-        description: 'Maine Coon de raza pura en México. Los gigantes gentiles del mundo felino. Personalidad amigable y tamaño impresionante.',
+        description: 'Maine Coon de raza pura. Los gigantes gentiles del mundo felino. Personalidad amigable y tamaño impresionante.',
         keywords: [...defaultSEO.keywords, 'maine coon', 'gato gigante', 'gigante gentil', 'características maine coon'],
         canonical: 'https://catloversparadise.com/breeds/mainecoon'
     },
@@ -121,7 +121,7 @@ export const pageSEO: Record<string, SEOConfig> = {
     bengal: {
         ...defaultSEO,
         title: 'Gatos Bengal - Cat Lovers Paradise | Leopardos Domésticos',
-        description: 'Gatos Bengal de raza pura en México. Patrones salvajes con temperamento doméstico. Los leopardos de tu hogar.',
+        description: 'Gatos Bengal de raza pura. Patrones salvajes con temperamento doméstico. Los leopardos de tu hogar.',
         keywords: [...defaultSEO.keywords, 'bengal', 'gato salvaje', 'leopardo doméstico', 'patrones bengal'],
         canonical: 'https://catloversparadise.com/breeds/bengal'
     },
@@ -129,7 +129,7 @@ export const pageSEO: Record<string, SEOConfig> = {
     exotic: {
         ...defaultSEO,
         title: 'Gatos Exótico - Cat Lovers Paradise | Persas de Pelo Corto',
-        description: 'Gatos Exótico de raza pura en México. La versión de pelo corto del Persa. Personalidad tranquila y adorable.',
+        description: 'Gatos Exótico de raza pura. La versión de pelo corto del Persa. Personalidad tranquila y adorable.',
         keywords: [...defaultSEO.keywords, 'exótico', 'persa pelo corto', 'gato tranquilo', 'características exótico'],
         canonical: 'https://catloversparadise.com/breeds/exotic'
     }

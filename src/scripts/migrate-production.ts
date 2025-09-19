@@ -49,6 +49,7 @@ async function runProductionMigration() {
         const migration3Path = path.join(__dirname, '..', 'migrations', '003_create_cat_listings.sql');
         const migration4Path = path.join(__dirname, '..', 'migrations', '004_fix_utf8_encoding.sql');
         const migration5Path = path.join(__dirname, '..', 'migrations', '005_add_british_shorthair.sql');
+        const migration6Path = path.join(__dirname, '..', 'migrations', '006_add_likoi.sql');
         
         console.log('📁 Leyendo archivos de migración...');
         console.log('📁 Ruta migración 1:', migration1Path);
@@ -56,14 +57,16 @@ async function runProductionMigration() {
         console.log('📁 Ruta migración 3:', migration3Path);
         console.log('📁 Ruta migración 4:', migration4Path);
         console.log('📁 Ruta migración 5:', migration5Path);
+        console.log('📁 Ruta migración 6:', migration6Path);
         
         const migration1SQL = fs.readFileSync(migration1Path, 'utf8');
         const migration2SQL = fs.readFileSync(migration2Path, 'utf8');
         const migration3SQL = fs.readFileSync(migration3Path, 'utf8');
         const migration4SQL = fs.readFileSync(migration4Path, 'utf8');
         const migration5SQL = fs.readFileSync(migration5Path, 'utf8');
+        const migration6SQL = fs.readFileSync(migration6Path, 'utf8');
         
-        const migrationSQL = migration1SQL + '\n\n' + migration2SQL + '\n\n' + migration3SQL + '\n\n' + migration4SQL + '\n\n' + migration5SQL;
+        const migrationSQL = migration1SQL + '\n\n' + migration2SQL + '\n\n' + migration3SQL + '\n\n' + migration4SQL + '\n\n' + migration5SQL + '\n\n' + migration6SQL;
         
         // Verificar qué migraciones ya se ejecutaron
         console.log('🔍 Verificando migraciones ejecutadas...');
@@ -77,7 +80,8 @@ async function runProductionMigration() {
             { name: '002_cats_data', sql: migration2SQL },
             { name: '003_create_cat_listings', sql: migration3SQL },
             { name: '004_fix_utf8_encoding', sql: migration4SQL },
-            { name: '005_add_british_shorthair', sql: migration5SQL }
+            { name: '005_add_british_shorthair', sql: migration5SQL },
+            { name: '006_add_likoi', sql: migration6SQL }
         ];
         
         // Ejecutar solo las migraciones pendientes
