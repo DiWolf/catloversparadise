@@ -30,7 +30,7 @@
                             {% for image in listing.images %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
                                 <img src="{{ image }}" class="d-block w-100" alt="{{ listing.name }}" 
-                                     style="height: 400px; object-fit: cover;">
+                                     style="object-fit: cover;">
                             </div>
                             {% endfor %}
                         </div>
